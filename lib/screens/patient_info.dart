@@ -132,7 +132,7 @@ class _PatientInfoPageState extends State<PatientInfoPage> {
 
   Widget doctors() {
     return SizedBox(
-      height: 1720,
+      height: 216,
       width: 390,
       child: Column(
         children: [
