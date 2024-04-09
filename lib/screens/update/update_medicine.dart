@@ -23,10 +23,10 @@ class _UpdateMedPageState extends State<UpdateMedPage> {
                 const SizedBox(height: 20),
                 details(),
                 medicine(),
-                const SizedBox(
-                  height: 24,
-                ),
-                history(),
+                const SizedBox(height: 24),
+                update(),
+                const SizedBox(height: 5),
+                confirmButton()
               ],
             ),
           ),
@@ -221,82 +221,41 @@ class _UpdateMedPageState extends State<UpdateMedPage> {
     );
   }
 
-  Widget history() {
-    return Column(
-      children: [
-        Padding(
-          padding: EdgeInsets.only(left: 20, right: 20),
-          child: Column(
+  Widget update() {
+    //COPY PASTE PANIS VITALS
+    return SizedBox(
+      height: 300,
+      width: 390,
+      child: Column(
+        children: [
+          Row(
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'History',
-                    style: interBold.copyWith(fontSize: 20, color: orange),
-                  ),
-                  Image.asset(
-                    'assets/icons/dots.png',
-                  ),
-                ],
+              Image.asset(
+                'assets/icons/information_icon.png',
+                width: 31,
+                height: 31,
               ),
-              SizedBox(
-                height: 8,
+              const SizedBox(width: 8),
+              Text(
+                'Update Medicine Timetable',
+                style: interBold.copyWith(fontSize: 20, color: orange),
               ),
-              historyTable(),
             ],
           ),
-        ),
-      ],
-    );
-  }
-
-  Widget historyTable() {
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: DataTable(
-        headingRowColor:
-            MaterialStateColor.resolveWith((states) => lightOrange),
-        border: TableBorder(
-            horizontalInside: BorderSide(color: orange),
-            top: BorderSide(color: orange),
-            bottom: BorderSide(color: orange)),
-        columns: <DataColumn>[
-          DataColumn(
-              label: Text(
-            'Date',
-            style: interBold.copyWith(
-              fontSize: 14,
-            ),
-          )),
-          DataColumn(
-              label: Text(
-            'Time',
-            style: interBold.copyWith(
-              fontSize: 14,
-            ),
-          )),
-          DataColumn(
-              label: Text(
-            'Medicine',
-            style: interBold.copyWith(
-              fontSize: 14,
-            ),
-          )),
-          DataColumn(
-              label: Text(
-            'Dosage',
-            style: interBold.copyWith(
-              fontSize: 14,
-            ),
-          )),
-          DataColumn(
-              label: Text(
-            'Administered By',
-            style: interBold.copyWith(
-              fontSize: 14,
-            ),
-          )),
+          const SizedBox(height: 10),
+          textBox(390, 'Generic Name'),
+          const SizedBox(height: 8),
+          Row(
+            children: [
+              textBox(191, 'Date'),
+              const SizedBox(width: 8),
+              textBox(191, 'Time'),
+            ],
+          ),
+          const SizedBox(height: 10),
+          textBox(390, 'Suggested by'),
+          const SizedBox(height: 10),
+          textBox(390, 'Remarks'),
         ],
         rows: <DataRow>[
           DataRow(cells: <DataCell>[
