@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:patient_link_prototype/constants/app_styles.dart';
 import 'package:patient_link_prototype/screens/select_category.dart';
 import 'package:patient_link_prototype/screens/patient_info.dart';
 
@@ -15,7 +16,7 @@ class _WelcomePageState extends State<WelcomePage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: const Color(0xFFFE8570),
+        backgroundColor: Colors.white,
         body: Center(
           child: Stack(
             alignment: Alignment.center,
@@ -32,12 +33,9 @@ class _WelcomePageState extends State<WelcomePage> {
 //METHODS
   Positioned appName() {
     return Positioned(
-        top: 80,
+        top: 169.98,
         child: Text('PatientLink',
-            style: GoogleFonts.montserrat(
-                fontSize: 22,
-                fontWeight: FontWeight.bold,
-                color: Colors.white)));
+            style: interBold.copyWith(fontSize: 32, color: orange)));
   }
 
   Positioned mainBody(BuildContext context) {
@@ -45,9 +43,10 @@ class _WelcomePageState extends State<WelcomePage> {
       top: 200,
       child: SizedBox(
         width: 300,
-        height: 600,
+        height: 700,
         child: Column(
           children: [
+            const SizedBox(height: 56),
             inputTitle(),
             const SizedBox(height: 17),
             patientIDfield(),
@@ -55,11 +54,11 @@ class _WelcomePageState extends State<WelcomePage> {
             passwordField(),
             const SizedBox(height: 30),
             trackButton(context),
-            const Spacer(),
-            alternative(),
-            const Spacer(),
-            updateTitle(),
             const SizedBox(height: 50),
+            alternative(),
+            const SizedBox(height: 50),
+            updateLog(),
+            const SizedBox(height: 15),
             scanQR()
           ],
         ),
@@ -93,48 +92,10 @@ class _WelcomePageState extends State<WelcomePage> {
   }
 
   Widget alternative() {
-    return Text('OR',
-        style:
-            GoogleFonts.montserrat(fontSize: 14, fontWeight: FontWeight.w600));
+    return Text('OR', style: interBold.copyWith(fontSize: 12, color: orange));
   }
 
   Container passwordField() {
-    return Container(
-      margin: const EdgeInsets.only(left: 0, right: 0),
-      child: TextField(
-        decoration: InputDecoration(
-          filled: true,
-          fillColor: Colors.white,
-          contentPadding:
-              const EdgeInsets.symmetric(vertical: 10, horizontal: 25),
-          hintText: 'Password',
-          hintStyle: GoogleFonts.poppins(
-            fontSize: 12,
-            color: const Color(0xFFA7A7A7),
-          ),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
-            borderSide: BorderSide.none,
-          ),
-          prefixIcon: Transform.scale(
-              scale: 0.5,
-              child: Image.asset('assets/icons/key_icon.png',
-                  width: 5, height: 5)),
-          suffixIcon: GestureDetector(
-            onTap: () {
-              // Handle the tap on the suffix icon
-            },
-            child: Transform.scale(
-                scale: 0.5,
-                child: Image.asset('assets/icons/eye_icon.png',
-                    width: 5, height: 5)),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Container patientIDfield() {
     return Container(
         margin: const EdgeInsets.only(left: 0, right: 0),
         child: TextField(
@@ -142,30 +103,121 @@ class _WelcomePageState extends State<WelcomePage> {
             filled: true,
             fillColor: Colors.white,
             contentPadding:
-                const EdgeInsets.symmetric(vertical: 5, horizontal: 25),
-            hintText: 'Phone number',
-            hintStyle: GoogleFonts.poppins(
-                fontSize: 12, color: const Color(0xFFA7A7A7)),
+                const EdgeInsets.symmetric(vertical: 10, horizontal: 25),
+            hintText: 'Password',
+            hintStyle: interRegular.copyWith(fontSize: 14, color: orange),
+            focusedBorder: const OutlineInputBorder(
+                borderSide: BorderSide(color: Color(0xffFE8570))),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
-              borderSide: BorderSide.none,
+              borderSide: const BorderSide(
+                  color: Color(0xffFE8570)), //ngano di mo change color
             ),
+            enabledBorder: const OutlineInputBorder(
+                borderSide: BorderSide(color: Color(0xffFE8570))),
             prefixIcon: Transform.scale(
                 scale: 0.5,
-                child: Image.asset('assets/icons/patient_icon.png',
+                child: Image.asset('assets/icons/key_icon.png',
                     width: 5, height: 5)),
+            suffixIcon: GestureDetector(
+              onTap: () {
+                // Handle the tap on the suffix icon
+              },
+              child: Transform.scale(
+                scale: 0.5,
+                //child: Image.asset('assets/icons/eye_icon.png',
+                //    width: 5, height: 5)),
+              ),
+            ),
           ),
         ));
+  }
+
+  Container patientIDfield() {
+    return Container(
+        margin: const EdgeInsets.only(left: 0, right: 0),
+        child: TextField(
+            decoration: InputDecoration(
+          filled: true,
+          fillColor: Colors.white,
+          contentPadding:
+              const EdgeInsets.symmetric(vertical: 5, horizontal: 25),
+          hintText: 'Patient ID',
+          hintStyle:
+              GoogleFonts.poppins(fontSize: 14, color: const Color(0xffFE8570)),
+          focusedBorder: const OutlineInputBorder(
+              borderSide: BorderSide(color: Color(0xffFE8570))),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10),
+            borderSide: const BorderSide(
+                color: Color(0xffFE8570)), //ngano di mo change color
+          ),
+          enabledBorder: const OutlineInputBorder(
+              borderSide: BorderSide(color: Color(0xffFE8570))),
+          prefixIcon: Transform.scale(
+            scale: 0.5,
+            //child: Image.asset('assets/icons/patient_icon.png',
+            //    width: 5, height: 5)),
+          ),
+        )));
   }
 
   Widget inputTitle() {
     return Align(
         alignment: Alignment.centerLeft,
-        child: Text('Patient Log',
-            style: GoogleFonts.montserrat(
-                fontSize: 22,
-                fontWeight: FontWeight.bold,
-                color: Colors.white)));
+        child: Row(
+          children: [
+            Container(
+              width: 24.54,
+              height: 22.03,
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('assets/icons/heart_icon.png'),
+                  fit: BoxFit.contain,
+                ),
+              ),
+            ),
+            const SizedBox(
+              width: 8,
+            ),
+            Text('Patient Log',
+                style: GoogleFonts.inter(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: const Color(0xffFE8570))),
+          ],
+        ));
+  }
+
+  Widget updateLog() {
+    return Align(
+        alignment: Alignment.centerLeft,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Row(
+              children: [
+                Container(
+                  width: 24.54,
+                  height: 22.03,
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage('assets/icons/heart_icon.png'),
+                      fit: BoxFit.contain,
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  width: 8,
+                ),
+                Text('Update Log',
+                    style: interBold.copyWith(fontSize: 20, color: orange)),
+              ],
+            ),
+            Text('(For medical professionals only)',
+                style: interRegular.copyWith(fontSize: 9, color: orange)),
+          ],
+        ));
   }
 
   ElevatedButton trackButton(BuildContext context) {
@@ -182,7 +234,7 @@ class _WelcomePageState extends State<WelcomePage> {
       },
       style: ElevatedButton.styleFrom(
         fixedSize: const Size(265, 45),
-        backgroundColor: const Color.fromARGB(255, 97, 95, 95),
+        backgroundColor: const Color(0xffFE8570),
         foregroundColor: Colors.white,
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         shape: RoundedRectangleBorder(
@@ -191,21 +243,11 @@ class _WelcomePageState extends State<WelcomePage> {
       ),
       child: Text(
         'View Log',
-        style: GoogleFonts.montserrat(
-          fontSize: 13,
+        style: GoogleFonts.inter(
+          fontSize: 14,
           fontWeight: FontWeight.bold,
         ),
       ),
     );
-  }
-
-  Widget updateTitle() {
-    return Align(
-        alignment: Alignment.centerLeft,
-        child: Text('Update Log',
-            style: GoogleFonts.montserrat(
-                fontSize: 22,
-                fontWeight: FontWeight.bold,
-                color: Colors.white)));
   }
 }
