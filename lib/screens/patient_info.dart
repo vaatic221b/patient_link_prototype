@@ -24,6 +24,9 @@ class _PatientInfoPageState extends State<PatientInfoPage> {
                 doctors(),
                 const SizedBox(height: 20),
                 vitals(),
+                meds(),
+                const SizedBox(height: 20),
+                meds(),
               ],
             ),
           ),
@@ -132,11 +135,11 @@ class _PatientInfoPageState extends State<PatientInfoPage> {
 
   Widget doctors() {
     return SizedBox(
-      height: 1720,
+      height: 216,
       width: 390,
       child: Column(
         children: [
-          header(),
+          header('assets/icons/heart_icon.png', 'Doctors Assigned'),
           const SizedBox(height: 10),
           Container(
             width: 390,
@@ -215,17 +218,17 @@ class _PatientInfoPageState extends State<PatientInfoPage> {
     );
   }
 
-  Row header() {
+  Row header(icon, title) {
     return Row(
       children: [
         Image.asset(
-          'assets/icons/heart_icon.png',
+          icon,
           width: 31,
           height: 31,
         ),
         const SizedBox(width: 8),
         Text(
-          'Doctors Assigned',
+          title,
           style: interBold.copyWith(fontSize: 20, color: orange),
         ),
       ],
@@ -233,10 +236,133 @@ class _PatientInfoPageState extends State<PatientInfoPage> {
   }
 
   Widget vitals() {
+    return SizedBox(
+      height: 150,
+      width: 390,
+      child: Column(
+        children: [
+          Row(
+            children: [
+              Image.asset(
+                'assets/icons/heart_icon.png',
+                width: 31,
+                height: 31,
+              ),
+              const SizedBox(width: 8),
+              Text(
+                'Vital Statistics',
+                style: interBold.copyWith(fontSize: 20, color: orange),
+              ),
+              const Spacer(),
+              Text(
+                'Last updated: 2:00 PM',
+                style: interRegular.copyWith(fontSize: 11, color: orange),
+              ),
+            ],
+          ),
+          const SizedBox(height: 10),
+          Container(
+            width: 390,
+            height: 92,
+            decoration: BoxDecoration(
+              color: const Color(0xFFFBEDE8),
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(10, 10, 0, 10),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        statistic('Blood Pressure', '140/90'),
+                        const SizedBox(width: 10),
+                        statistic('Heart Rate', '95'),
+                        const SizedBox(width: 10),
+                        statistic('Glucose Level', '89.72'),
+                        const SizedBox(width: 10),
+                        statistic('Temperature', '28.03'),
+                        const SizedBox(width: 10),
+                        statistic('Oxygen Level', '28.03'),
+                        const SizedBox(width: 10),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    width: 35,
+                    height: 35,
+                    child: Image.asset(
+                      'assets/icons/dots_icon.png',
+                      fit: BoxFit.fill,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget statistic(statistic, number) {
+    return Container(
+      height: 60,
+      width: 113,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(12),
+        color: Colors.white,
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(
+              left: 12,
+              top: 12,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  statistic,
+                  style: interItalicBold.copyWith(
+                    color: orange,
+                    fontSize: 12,
+                  ),
+                ),
+                const SizedBox(
+                  height: 4,
+                ),
+                Text(
+                  number,
+                  textAlign: TextAlign.start,
+                  style: interBold.copyWith(
+                    fontSize: 14,
+                  ),
+                )
+              ],
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget meds() {
     return Container(
       width: 390,
-      height: 131,
+      height: 200,
       color: Colors.amber,
+      child: Column(
+        children: [
+          header('assets/icons/med_icon.png', 'Medicines Taken'),
+        ],
+      ),
     );
   }
 }
