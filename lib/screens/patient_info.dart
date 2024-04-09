@@ -22,6 +22,8 @@ class _PatientInfoPageState extends State<PatientInfoPage> {
                 const SizedBox(height: 20),
                 details(),
                 doctors(),
+                const SizedBox(height: 20),
+                vitals(),
               ],
             ),
           ),
@@ -129,39 +131,112 @@ class _PatientInfoPageState extends State<PatientInfoPage> {
   }
 
   Widget doctors() {
-    return Container(
+    return SizedBox(
       height: 1720,
       width: 390,
       child: Column(
         children: [
-          Row(
-            children: [
-              Image.asset(
-                'assets/icons/heart_icon.png',
-                width: 31,
-                height: 31,
-              ),
-              const SizedBox(width: 8),
-              Text(
-                'Doctors Assigned',
-                style: interBold.copyWith(fontSize: 20, color: orange),
-              ),
-            ],
-          ),
+          header(),
           const SizedBox(height: 10),
           Container(
             width: 390,
-            height: 100,
+            height: 172,
             decoration: BoxDecoration(
               color: const Color(0xFFFBEDE8),
               borderRadius: BorderRadius.circular(12),
             ),
-            child: Column(
-              children: [],
+            child: Padding(
+              padding: const EdgeInsets.only(right: 5),
+              child: RawScrollbar(
+                thumbVisibility: true,
+                thumbColor: const Color(0xFFFE8570),
+                radius: const Radius.circular(20),
+                child: ListView.separated(
+                  padding: const EdgeInsets.fromLTRB(15, 15, 15, 15),
+                  scrollDirection: Axis.vertical,
+                  itemCount: 4,
+                  separatorBuilder: (BuildContext context, int index) =>
+                      const SizedBox(height: 8),
+                  itemBuilder: (BuildContext context, int index) {
+                    return Container(
+                      width: 343,
+                      height: 65,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Row(
+                        children: [
+                          Container(
+                            height: 65,
+                            width: 72,
+                            decoration: const BoxDecoration(
+                              color: Color(0xFFFE8570),
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(12),
+                                bottomLeft: Radius.circular(12),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 10),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                'Dr. Jane Doe',
+                                style: interBold.copyWith(
+                                    fontSize: 14, color: black),
+                              ),
+                              Text(
+                                'Nephrologist',
+                                style: interItalic.copyWith(
+                                    fontSize: 12, color: black),
+                              )
+                            ],
+                          ),
+                          const Spacer(),
+                          SizedBox(
+                            width: 40,
+                            height: 40,
+                            child: Image.asset(
+                              'assets/icons/dots_icon.png',
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                ),
+              ),
             ),
           )
         ],
       ),
+    );
+  }
+
+  Row header() {
+    return Row(
+      children: [
+        Image.asset(
+          'assets/icons/heart_icon.png',
+          width: 31,
+          height: 31,
+        ),
+        const SizedBox(width: 8),
+        Text(
+          'Doctors Assigned',
+          style: interBold.copyWith(fontSize: 20, color: orange),
+        ),
+      ],
+    );
+  }
+
+  Widget vitals() {
+    return Container(
+      width: 390,
+      height: 131,
+      color: Colors.amber,
     );
   }
 }
