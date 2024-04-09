@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:patient_link_prototype/screens/update/update_statistics.dart';
 import 'package:patient_link_prototype/screens/welcome.dart';
 
 void main() {
