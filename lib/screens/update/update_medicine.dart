@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:patient_link_prototype/constants/app_styles.dart';
 
-class MedicineLogsPage extends StatefulWidget {
-  const MedicineLogsPage({super.key});
+class UpdateMedPage extends StatefulWidget {
+  const UpdateMedPage({super.key});
 
   @override
-  State<MedicineLogsPage> createState() => _MedicineTakenPageState();
+  State<UpdateMedPage> createState() => _UpdateMedPageState();
 }
 
-class _MedicineTakenPageState extends State<MedicineLogsPage> {
+class _UpdateMedPageState extends State<UpdateMedPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,10 +22,8 @@ class _MedicineTakenPageState extends State<MedicineLogsPage> {
                 const SizedBox(height: 20),
                 details(),
                 medicine(),
-                const SizedBox(
-                  height: 24,
-                ),
-                history(),
+                const SizedBox(height: 24),
+                update()
               ],
             ),
           ),
@@ -220,134 +218,96 @@ class _MedicineTakenPageState extends State<MedicineLogsPage> {
     );
   }
 
-  Widget history() {
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(left: 20, right: 20),
-          child: Column(
+  Widget update() {
+    return SizedBox(
+      height: 250,
+      width: 390,
+      child: Column(
+        children: [
+          Row(
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'History',
-                    style: interBold.copyWith(fontSize: 20, color: orange),
-                  ),
-                  Image.asset(
-                    'assets/icons/dots.png',
-                  ),
-                ],
+              Image.asset(
+                'assets/icons/information_icon.png',
+                width: 31,
+                height: 31,
               ),
-              const SizedBox(
-                height: 8,
+              const SizedBox(width: 8),
+              Text(
+                'Update Statistics',
+                style: interBold.copyWith(fontSize: 20, color: orange),
               ),
-              historyTable(),
             ],
           ),
-        ),
-      ],
+          const SizedBox(height: 10),
+          textBox(390, 'Blood Pressure'),
+          const SizedBox(height: 8),
+          Row(
+            children: [
+              textBox(191, 'Heart Rate'),
+              const SizedBox(width: 8),
+              textBox(191, 'Glucose Level'),
+            ],
+          ),
+          const SizedBox(height: 8),
+          Row(
+            children: [
+              textBox(191, 'Body Temperature'),
+              const SizedBox(width: 8),
+              textBox(191, 'Oxygen Saturation'),
+            ],
+          ),
+        ],
+      ),
     );
   }
 
-  Widget historyTable() {
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: DataTable(
-        headingRowColor:
-            MaterialStateColor.resolveWith((states) => lightOrange),
-        border: const TableBorder(
-            horizontalInside: BorderSide(color: orange),
-            top: BorderSide(color: orange),
-            bottom: BorderSide(color: orange)),
-        columns: <DataColumn>[
-          DataColumn(
-              label: Text(
-            'Date',
-            style: interBold.copyWith(
-              fontSize: 14,
-            ),
-          )),
-          DataColumn(
-              label: Text(
-            'Time',
-            style: interBold.copyWith(
-              fontSize: 14,
-            ),
-          )),
-          DataColumn(
-              label: Text(
-            'Medicine',
-            style: interBold.copyWith(
-              fontSize: 14,
-            ),
-          )),
-          DataColumn(
-              label: Text(
-            'Dosage',
-            style: interBold.copyWith(
-              fontSize: 14,
-            ),
-          )),
-          DataColumn(
-              label: Text(
-            'Administered By',
-            style: interBold.copyWith(
-              fontSize: 14,
-            ),
-          )),
+  Widget confirmButton() {
+    return Container(
+      height: 44,
+      width: 390,
+      decoration:
+          BoxDecoration(borderRadius: BorderRadius.circular(12), color: orange),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const SizedBox(height: 12),
+          Row(
+            children: [
+              const SizedBox(width: 16),
+              Image.asset(
+                'assets/icons/yes.png',
+                width: 20,
+                height: 20,
+              ),
+              const SizedBox(width: 4),
+              Text(
+                'Confirm Updates',
+                style: interBold.copyWith(fontSize: 14, color: kWhite),
+              )
+            ],
+          )
         ],
-        rows: const <DataRow>[
-          DataRow(cells: <DataCell>[
-            DataCell(Text('5/26/2024')),
-            DataCell(Text('9:00 AM')),
-            DataCell(Text('Paracetamol & Losartan')),
-            DataCell(Text('1')),
-            DataCell(Text('Nurse Datan')),
-          ]),
-          DataRow(cells: <DataCell>[
-            DataCell(Text('5/26/2024')),
-            DataCell(Text('12:30 PM')),
-            DataCell(Text('Paracetamol & Losartan')),
-            DataCell(Text('1')),
-            DataCell(Text('Nurse Datan')),
-          ]),
-          DataRow(cells: <DataCell>[
-            DataCell(Text('5/26/2024')),
-            DataCell(Text('7:00 PM')),
-            DataCell(Text('Paracetamol ')),
-            DataCell(Text('1')),
-            DataCell(Text('Nurse Sucalit')),
-          ]),
-          DataRow(cells: <DataCell>[
-            DataCell(Text('5/27/2024')),
-            DataCell(Text('09:00 AM')),
-            DataCell(Text('Paracetamol & Losartan')),
-            DataCell(Text('1')),
-            DataCell(Text('Nurse Sucalit')),
-          ]),
-          DataRow(cells: <DataCell>[
-            DataCell(Text('')),
-            DataCell(Text('')),
-            DataCell(Text('')),
-            DataCell(Text('')),
-            DataCell(Text('')),
-          ]),
-          DataRow(cells: <DataCell>[
-            DataCell(Text('')),
-            DataCell(Text('')),
-            DataCell(Text('')),
-            DataCell(Text('')),
-            DataCell(Text('')),
-          ]),
-          DataRow(cells: <DataCell>[
-            DataCell(Text('')),
-            DataCell(Text('')),
-            DataCell(Text('')),
-            DataCell(Text('')),
-            DataCell(Text('')),
-          ]),
-        ],
+      ),
+    );
+  }
+
+  Widget textBox(width, description) {
+    return SizedBox(
+      width: width,
+      child: TextFormField(
+        decoration: InputDecoration(
+          border: const OutlineInputBorder(),
+          labelText: description,
+          floatingLabelStyle: MaterialStateTextStyle.resolveWith(
+            (Set<MaterialState> states) {
+              final Color color = states.contains(MaterialState.error)
+                  ? Theme.of(context).colorScheme.error
+                  : orange;
+              return TextStyle(color: color, letterSpacing: 1.3);
+            },
+          ),
+        ),
+        autovalidateMode: AutovalidateMode.always,
       ),
     );
   }

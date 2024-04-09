@@ -148,7 +148,7 @@ class _UpdateStatisticsPageState extends State<UpdateVitalsPage> {
   }
 
   Widget vitalsStatistics() {
-    return Container(
+    return SizedBox(
       height: 274,
       width: 390,
       child: Column(
@@ -242,10 +242,7 @@ class _UpdateStatisticsPageState extends State<UpdateVitalsPage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: EdgeInsets.only(
-              left: 12,
-              top: 12,
-            ),
+            padding: const EdgeInsets.only(left: 12, top: 12),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -275,7 +272,7 @@ class _UpdateStatisticsPageState extends State<UpdateVitalsPage> {
   }
 
   Widget update() {
-    return Container(
+    return SizedBox(
       height: 250,
       width: 390,
       child: Column(
@@ -296,27 +293,19 @@ class _UpdateStatisticsPageState extends State<UpdateVitalsPage> {
           ),
           const SizedBox(height: 10),
           textBox(390, 'Blood Pressure'),
-          SizedBox(
-            height: 8,
-          ),
+          const SizedBox(height: 8),
           Row(
             children: [
               textBox(191, 'Heart Rate'),
-              SizedBox(
-                width: 8,
-              ),
+              const SizedBox(width: 8),
               textBox(191, 'Glucose Level'),
             ],
           ),
-          SizedBox(
-            height: 8,
-          ),
+          const SizedBox(height: 8),
           Row(
             children: [
               textBox(191, 'Body Temperature'),
-              SizedBox(
-                width: 8,
-              ),
+              const SizedBox(width: 8),
               textBox(191, 'Oxygen Saturation'),
             ],
           ),
@@ -334,22 +323,16 @@ class _UpdateStatisticsPageState extends State<UpdateVitalsPage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(
-            height: 12,
-          ),
+          const SizedBox(height: 12),
           Row(
             children: [
-              SizedBox(
-                width: 16,
-              ),
+              const SizedBox(width: 16),
               Image.asset(
                 'assets/icons/yes.png',
                 width: 20,
                 height: 20,
               ),
-              SizedBox(
-                width: 4,
-              ),
+              const SizedBox(width: 4),
               Text(
                 'Confirm Updates',
                 style: interBold.copyWith(fontSize: 14, color: kWhite),
@@ -362,11 +345,11 @@ class _UpdateStatisticsPageState extends State<UpdateVitalsPage> {
   }
 
   Widget textBox(width, description) {
-    return Container(
+    return SizedBox(
       width: width,
       child: TextFormField(
         decoration: InputDecoration(
-          border: OutlineInputBorder(),
+          border: const OutlineInputBorder(),
           labelText: description,
           floatingLabelStyle: MaterialStateTextStyle.resolveWith(
             (Set<MaterialState> states) {
