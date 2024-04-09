@@ -22,10 +22,9 @@ class _UpdateVitalsPageState extends State<UpdateVitalsPage> {
                 const SizedBox(height: 20),
                 details(),
                 vitalsStatistics(),
-                const SizedBox(
-                  height: 24,
-                ),
+                const SizedBox(height: 24),
                 update(),
+                const SizedBox(height: 5),
                 confirmButton(),
               ],
             ),
@@ -273,7 +272,7 @@ class _UpdateVitalsPageState extends State<UpdateVitalsPage> {
 
   Widget update() {
     return SizedBox(
-      height: 250,
+      height: 300,
       width: 390,
       child: Column(
         children: [
@@ -314,6 +313,8 @@ class _UpdateVitalsPageState extends State<UpdateVitalsPage> {
               textBox(191, 'Oxygen Saturation'),
             ],
           ),
+          const SizedBox(height: 10),
+          textBox(390, 'Respiratory Rate'),
         ],
       ),
     );

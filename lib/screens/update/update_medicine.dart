@@ -23,7 +23,9 @@ class _UpdateMedPageState extends State<UpdateMedPage> {
                 details(),
                 medicine(),
                 const SizedBox(height: 24),
-                update()
+                update(),
+                const SizedBox(height: 5),
+                confirmButton()
               ],
             ),
           ),
@@ -221,7 +223,7 @@ class _UpdateMedPageState extends State<UpdateMedPage> {
   Widget update() {
     //COPY PASTE PANIS VITALS
     return SizedBox(
-      height: 250,
+      height: 300,
       width: 390,
       child: Column(
         children: [
@@ -240,23 +242,19 @@ class _UpdateMedPageState extends State<UpdateMedPage> {
             ],
           ),
           const SizedBox(height: 10),
-          textBox(390, 'Blood Pressure'),
+          textBox(390, 'Generic Name'),
           const SizedBox(height: 8),
           Row(
             children: [
-              textBox(191, 'Heart Rate'),
+              textBox(191, 'Date'),
               const SizedBox(width: 8),
-              textBox(191, 'Glucose Level'),
+              textBox(191, 'Time'),
             ],
           ),
-          const SizedBox(height: 8),
-          Row(
-            children: [
-              textBox(191, 'Body Temperature'),
-              const SizedBox(width: 8),
-              textBox(191, 'Oxygen Saturation'),
-            ],
-          ),
+          const SizedBox(height: 10),
+          textBox(390, 'Suggested by'),
+          const SizedBox(height: 10),
+          textBox(390, 'Remarks'),
         ],
       ),
     );
