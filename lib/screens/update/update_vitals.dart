@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:patient_link_prototype/constants/app_styles.dart';
 
 class UpdateVitalsPage extends StatefulWidget {
@@ -281,14 +280,19 @@ class _UpdateVitalsPageState extends State<UpdateVitalsPage> {
           Row(
             children: [
               Image.asset(
-                'assets/icons/information_icon.png',
+                'assets/icons/heart_icon.png',
                 width: 31,
                 height: 31,
               ),
               const SizedBox(width: 8),
               Text(
-                'Update Statistics',
+                'Vital Statistics',
                 style: interBold.copyWith(fontSize: 20, color: orange),
+              ),
+              const Spacer(),
+              Text(
+                'Last updated: 2:00 PM',
+                style: interRegular.copyWith(fontSize: 11, color: orange),
               ),
             ],
           ),
@@ -350,7 +354,9 @@ class _UpdateVitalsPageState extends State<UpdateVitalsPage> {
       width: width,
       child: TextFormField(
         decoration: InputDecoration(
-          border: const OutlineInputBorder(),
+          border: const OutlineInputBorder(
+            borderSide: BorderSide(color: Color(0xFFFE8570)),
+          ),
           labelText: description,
           floatingLabelStyle: MaterialStateTextStyle.resolveWith(
             (Set<MaterialState> states) {

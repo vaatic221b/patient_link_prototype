@@ -219,6 +219,7 @@ class _UpdateMedPageState extends State<UpdateMedPage> {
   }
 
   Widget update() {
+    //COPY PASTE PANIS VITALS
     return SizedBox(
       height: 250,
       width: 390,
@@ -233,7 +234,7 @@ class _UpdateMedPageState extends State<UpdateMedPage> {
               ),
               const SizedBox(width: 8),
               Text(
-                'Update Statistics',
+                'Update Medicine Timetable',
                 style: interBold.copyWith(fontSize: 20, color: orange),
               ),
             ],
