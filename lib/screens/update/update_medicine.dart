@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:patient_link_prototype/constants/app_styles.dart';
 
-class UpdateStatistics extends StatefulWidget {
-  const UpdateStatistics({super.key});
+class UpdateMedicine extends StatefulWidget {
+  const UpdateMedicine({super.key});
 
   @override
-  State<UpdateStatistics> createState() => _UpdateStatisticsPageState();
+  State<UpdateMedicine> createState() => _UpdateMedicinePageState();
 }
 
-class _UpdateStatisticsPageState extends State<UpdateStatistics> {
+class _UpdateMedicinePageState extends State<UpdateMedicine> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -349,11 +349,11 @@ class _UpdateStatisticsPageState extends State<UpdateStatistics> {
                 height: 20,
               ),
               SizedBox(
-                width: 10,
+                width: 4,
               ),
               Text(
                 'Confirm Updates',
-                style: interBold.copyWith(fontSize: 16, color: kWhite),
+                style: interBold.copyWith(fontSize: 14, color: kWhite),
               )
             ],
           )
