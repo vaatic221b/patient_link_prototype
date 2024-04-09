@@ -147,7 +147,7 @@ class _VitalsPageState extends State<VitalsLogsPage> {
   }
 
   Widget vitalsStatistics() {
-    return Container(
+    return SizedBox(
       height: 274,
       width: 390,
       child: Column(

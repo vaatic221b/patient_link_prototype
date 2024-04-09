@@ -147,7 +147,7 @@ class _MedicineTakenPageState extends State<MedicineLogsPage> {
   }
 
   Widget medicine() {
-    return Container(
+    return SizedBox(
       height: 200,
       width: 390,
       child: Column(
@@ -168,7 +168,7 @@ class _MedicineTakenPageState extends State<MedicineLogsPage> {
           ),
           const SizedBox(height: 10),
           meds('Paracetamol', 'Thrice a Day', '5/26/2024'),
-          SizedBox(
+          const SizedBox(
             height: 8,
           ),
           meds('Losartan', 'Twice a Day', '5/27/2024'),
@@ -192,7 +192,7 @@ class _MedicineTakenPageState extends State<MedicineLogsPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 12),
+            const SizedBox(height: 12),
             Padding(
               padding: const EdgeInsets.only(left: 16),
               child: Column(
@@ -200,25 +200,16 @@ class _MedicineTakenPageState extends State<MedicineLogsPage> {
                 children: [
                   Text(
                     meds,
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 14,
-                    ),
+                    style: interBold.copyWith(fontSize: 14),
                   ),
-                  SizedBox(height: 2),
+                  const SizedBox(height: 2),
                   Text(
                     'Instructions: $instructions',
-                    style: TextStyle(
-                      fontStyle: FontStyle.italic,
-                      fontSize: 12,
-                    ),
+                    style: interItalic.copyWith(fontSize: 12),
                   ),
                   Text(
                     'Date Began: $dateBegan',
-                    style: TextStyle(
-                      fontStyle: FontStyle.italic,
-                      fontSize: 12,
-                    ),
+                    style: interItalic.copyWith(fontSize: 12),
                   ),
                 ],
               ),
@@ -233,7 +224,7 @@ class _MedicineTakenPageState extends State<MedicineLogsPage> {
     return Column(
       children: [
         Padding(
-          padding: EdgeInsets.only(left: 20, right: 20),
+          padding: const EdgeInsets.only(left: 20, right: 20),
           child: Column(
             children: [
               Row(
@@ -248,7 +239,7 @@ class _MedicineTakenPageState extends State<MedicineLogsPage> {
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 8,
               ),
               historyTable(),
@@ -265,7 +256,7 @@ class _MedicineTakenPageState extends State<MedicineLogsPage> {
       child: DataTable(
         headingRowColor:
             MaterialStateColor.resolveWith((states) => lightOrange),
-        border: TableBorder(
+        border: const TableBorder(
             horizontalInside: BorderSide(color: orange),
             top: BorderSide(color: orange),
             bottom: BorderSide(color: orange)),
@@ -306,7 +297,7 @@ class _MedicineTakenPageState extends State<MedicineLogsPage> {
             ),
           )),
         ],
-        rows: <DataRow>[
+        rows: const <DataRow>[
           DataRow(cells: <DataCell>[
             DataCell(Text('5/26/2024')),
             DataCell(Text('9:00 AM')),
