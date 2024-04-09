@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:patient_link_prototype/constants/app_styles.dart';
 
-class UpdateVitalsPage extends StatefulWidget {
-  const UpdateVitalsPage({super.key});
+class MedicineLogsPage extends StatefulWidget {
+  const MedicineLogsPage({super.key});
 
   @override
-  State<UpdateVitalsPage> createState() => _UpdateStatisticsPageState();
+  State<MedicineLogsPage> createState() => _MedicineTakenPageState();
 }
 
-class _UpdateStatisticsPageState extends State<UpdateVitalsPage> {
+class _MedicineTakenPageState extends State<MedicineLogsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,12 +21,11 @@ class _UpdateStatisticsPageState extends State<UpdateVitalsPage> {
                 name(),
                 const SizedBox(height: 20),
                 details(),
-                vitalsStatistics(),
+                medicine(),
                 const SizedBox(
                   height: 24,
                 ),
-                update(),
-                confirmButton(),
+                history(),
               ],
             ),
           ),
@@ -147,237 +146,217 @@ class _UpdateStatisticsPageState extends State<UpdateVitalsPage> {
         style: interBold.copyWith(fontSize: 16, color: orange));
   }
 
-  Widget vitalsStatistics() {
+  Widget medicine() {
     return Container(
-      height: 274,
+      height: 200,
       width: 390,
       child: Column(
         children: [
           Row(
             children: [
               Image.asset(
-                'assets/icons/heart_icon.png',
+                'assets/icons/med_icon.png',
                 width: 31,
                 height: 31,
               ),
               const SizedBox(width: 8),
               Text(
-                'Vital Statistics',
+                'Medicines Taken',
                 style: interBold.copyWith(fontSize: 20, color: orange),
               ),
             ],
           ),
           const SizedBox(height: 10),
-          Container(
-              width: 390,
-              height: 232,
-              decoration: BoxDecoration(
-                color: const Color(0xFFFBEDE8),
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Column(
-                children: [
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  Row(
-                    children: [
-                      const SizedBox(
-                        width: 16,
-                      ),
-                      statistics(112.67, 'Blood Pressure', '140/90'),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      statistics(112.67, 'Heart Rate', '95'),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      statistics(112.67, 'Glucose Level', '89.72'),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Row(
-                    children: [
-                      const SizedBox(
-                        width: 16,
-                      ),
-                      statistics(174, 'Body Temperature', '28.03'),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      statistics(174, 'Oxygen Saturation', '28.03'),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Row(
-                    children: [
-                      const SizedBox(
-                        width: 16,
-                      ),
-                      statistics(358, 'Respiratory Rate', '28.03')
-                    ],
-                  ),
-                ],
-              ))
+          meds('Paracetamol', 'Thrice a Day', '5/26/2024'),
+          SizedBox(
+            height: 8,
+          ),
+          meds('Losartan', 'Twice a Day', '5/27/2024'),
         ],
       ),
     );
   }
 
-  Widget statistics(width, statistic, number) {
+  Widget meds(String meds, String instructions, String dateBegan) {
     return Container(
-      height: 60,
-      width: width,
+      height: 75,
+      width: 390,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
-        color: Colors.white,
+        border: Border.all(
+          color: orange,
+        ),
       ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: EdgeInsets.only(
-              left: 12,
-              top: 12,
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  statistic,
-                  style: interItalicBold.copyWith(
-                    color: orange,
-                    fontSize: 12,
+      child: Padding(
+        padding: const EdgeInsets.only(left: 12.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(height: 12),
+            Padding(
+              padding: const EdgeInsets.only(left: 16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    meds,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 14,
+                    ),
                   ),
-                ),
-                const SizedBox(
-                  height: 4,
-                ),
-                Text(
-                  number,
-                  textAlign: TextAlign.start,
-                  style: interBold.copyWith(
-                    fontSize: 14,
+                  SizedBox(height: 2),
+                  Text(
+                    'Instructions: $instructions',
+                    style: TextStyle(
+                      fontStyle: FontStyle.italic,
+                      fontSize: 12,
+                    ),
                   ),
-                ),
-              ],
-            ),
-          )
-        ],
+                  Text(
+                    'Date Began: $dateBegan',
+                    style: TextStyle(
+                      fontStyle: FontStyle.italic,
+                      fontSize: 12,
+                    ),
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
 
-  Widget update() {
-    return Container(
-      height: 250,
-      width: 390,
-      child: Column(
-        children: [
-          Row(
+  Widget history() {
+    return Column(
+      children: [
+        Padding(
+          padding: EdgeInsets.only(left: 20, right: 20),
+          child: Column(
             children: [
-              Image.asset(
-                'assets/icons/information_icon.png',
-                width: 31,
-                height: 31,
-              ),
-              const SizedBox(width: 8),
-              Text(
-                'Update Statistics',
-                style: interBold.copyWith(fontSize: 20, color: orange),
-              ),
-            ],
-          ),
-          const SizedBox(height: 10),
-          textBox(390, 'Blood Pressure'),
-          SizedBox(
-            height: 8,
-          ),
-          Row(
-            children: [
-              textBox(191, 'Heart Rate'),
-              SizedBox(
-                width: 8,
-              ),
-              textBox(191, 'Glucose Level'),
-            ],
-          ),
-          SizedBox(
-            height: 8,
-          ),
-          Row(
-            children: [
-              textBox(191, 'Body Temperature'),
-              SizedBox(
-                width: 8,
-              ),
-              textBox(191, 'Oxygen Saturation'),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget confirmButton() {
-    return Container(
-      height: 44,
-      width: 390,
-      decoration:
-          BoxDecoration(borderRadius: BorderRadius.circular(12), color: orange),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SizedBox(
-            height: 12,
-          ),
-          Row(
-            children: [
-              SizedBox(
-                width: 16,
-              ),
-              Image.asset(
-                'assets/icons/yes.png',
-                width: 20,
-                height: 20,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'History',
+                    style: interBold.copyWith(fontSize: 20, color: orange),
+                  ),
+                  Image.asset(
+                    'assets/icons/dots.png',
+                  ),
+                ],
               ),
               SizedBox(
-                width: 10,
+                height: 8,
               ),
-              Text(
-                'Confirm Updates',
-                style: interBold.copyWith(fontSize: 16, color: kWhite),
-              )
+              historyTable(),
             ],
-          )
-        ],
-      ),
-    );
-  }
-
-  Widget textBox(width, description) {
-    return Container(
-      width: width,
-      child: TextFormField(
-        decoration: InputDecoration(
-          border: OutlineInputBorder(),
-          labelText: description,
-          floatingLabelStyle: MaterialStateTextStyle.resolveWith(
-            (Set<MaterialState> states) {
-              final Color color = states.contains(MaterialState.error)
-                  ? Theme.of(context).colorScheme.error
-                  : orange;
-              return TextStyle(color: color, letterSpacing: 1.3);
-            },
           ),
         ),
-        autovalidateMode: AutovalidateMode.always,
+      ],
+    );
+  }
+
+  Widget historyTable() {
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: DataTable(
+        headingRowColor:
+            MaterialStateColor.resolveWith((states) => lightOrange),
+        border: TableBorder(
+            horizontalInside: BorderSide(color: orange),
+            top: BorderSide(color: orange),
+            bottom: BorderSide(color: orange)),
+        columns: <DataColumn>[
+          DataColumn(
+              label: Text(
+            'Date',
+            style: interBold.copyWith(
+              fontSize: 14,
+            ),
+          )),
+          DataColumn(
+              label: Text(
+            'Time',
+            style: interBold.copyWith(
+              fontSize: 14,
+            ),
+          )),
+          DataColumn(
+              label: Text(
+            'Medicine',
+            style: interBold.copyWith(
+              fontSize: 14,
+            ),
+          )),
+          DataColumn(
+              label: Text(
+            'Dosage',
+            style: interBold.copyWith(
+              fontSize: 14,
+            ),
+          )),
+          DataColumn(
+              label: Text(
+            'Administered By',
+            style: interBold.copyWith(
+              fontSize: 14,
+            ),
+          )),
+        ],
+        rows: <DataRow>[
+          DataRow(cells: <DataCell>[
+            DataCell(Text('5/26/2024')),
+            DataCell(Text('9:00 AM')),
+            DataCell(Text('Paracetamol & Losartan')),
+            DataCell(Text('1')),
+            DataCell(Text('Nurse Datan')),
+          ]),
+          DataRow(cells: <DataCell>[
+            DataCell(Text('5/26/2024')),
+            DataCell(Text('12:30 PM')),
+            DataCell(Text('Paracetamol & Losartan')),
+            DataCell(Text('1')),
+            DataCell(Text('Nurse Datan')),
+          ]),
+          DataRow(cells: <DataCell>[
+            DataCell(Text('5/26/2024')),
+            DataCell(Text('7:00 PM')),
+            DataCell(Text('Paracetamol ')),
+            DataCell(Text('1')),
+            DataCell(Text('Nurse Sucalit')),
+          ]),
+          DataRow(cells: <DataCell>[
+            DataCell(Text('5/27/2024')),
+            DataCell(Text('09:00 AM')),
+            DataCell(Text('Paracetamol & Losartan')),
+            DataCell(Text('1')),
+            DataCell(Text('Nurse Sucalit')),
+          ]),
+          DataRow(cells: <DataCell>[
+            DataCell(Text('')),
+            DataCell(Text('')),
+            DataCell(Text('')),
+            DataCell(Text('')),
+            DataCell(Text('')),
+          ]),
+          DataRow(cells: <DataCell>[
+            DataCell(Text('')),
+            DataCell(Text('')),
+            DataCell(Text('')),
+            DataCell(Text('')),
+            DataCell(Text('')),
+          ]),
+          DataRow(cells: <DataCell>[
+            DataCell(Text('')),
+            DataCell(Text('')),
+            DataCell(Text('')),
+            DataCell(Text('')),
+            DataCell(Text('')),
+          ]),
+        ],
       ),
     );
   }
