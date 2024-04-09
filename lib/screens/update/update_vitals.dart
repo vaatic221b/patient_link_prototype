@@ -285,7 +285,7 @@ class _UpdateVitalsPageState extends State<UpdateVitalsPage> {
               ),
               const SizedBox(width: 8),
               Text(
-                'Vital Statistics',
+                'Update Vital Statistics',
                 style: interBold.copyWith(fontSize: 20, color: orange),
               ),
               const Spacer(),

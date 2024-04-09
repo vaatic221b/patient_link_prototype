@@ -221,7 +221,8 @@ class _UpdateMedPageState extends State<UpdateMedPage> {
   }
 
   Widget update() {
-    //COPY PASTE PANIS VITALS
+    TextEditingController dateController = TextEditingController();
+
     return SizedBox(
       height: 300,
       width: 390,
@@ -246,8 +247,7 @@ class _UpdateMedPageState extends State<UpdateMedPage> {
           const SizedBox(height: 8),
           Row(
             children: [
-              Container(
-                width: 191,
+              Expanded(
                 child: GestureDetector(
                   onTap: () async {
                     final DateTime? picked = await showDatePicker(
@@ -258,13 +258,18 @@ class _UpdateMedPageState extends State<UpdateMedPage> {
                     );
                     if (picked != null) {
                       // Handle selected date
+                      dateController.text =
+                          "${picked.month}/${picked.day}/${picked.year}";
                     }
                   },
                   child: AbsorbPointer(
                     child: TextFormField(
-                      decoration: InputDecoration(
+                      controller: dateController,
+                      decoration: const InputDecoration(
                         border: OutlineInputBorder(),
                         labelText: 'Select Date',
+                        suffixIcon: Icon(Icons.calendar_today,
+                            color: Color(0xFFFE8570)),
                       ),
                     ),
                   ),
