@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:patient_link_prototype/constants/app_styles.dart';
 import 'package:patient_link_prototype/screens/update/update_medicine.dart';
+import 'package:patient_link_prototype/screens/update/update_operations.dart';
 import 'package:patient_link_prototype/screens/update/update_vitals.dart';
 
 class EntryCategoryPage extends StatefulWidget {
@@ -253,7 +254,14 @@ class _EntryCategoryPageState extends State<EntryCategoryPage> {
                         );
                         break;
                       case 2:
-                        // Navigate to Upcoming Operations page
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return const UpdateOperations();
+                            },
+                          ),
+                        );
                         break;
                       case 3:
                         // Navigate to Operation History page
