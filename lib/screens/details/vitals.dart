@@ -56,7 +56,7 @@ class _VitalsPageState extends State<VitalsLogsPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Real Niggas',
+              Text('Daniel Caesar',
                   style: interBold.copyWith(color: orange, fontSize: 24)),
               const SizedBox(height: 5),
               Text('June 26, 2024',
