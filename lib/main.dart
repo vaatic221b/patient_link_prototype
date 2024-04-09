@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:patient_link_prototype/screens/update/update_medicine.dart';
 import 'package:patient_link_prototype/screens/update/update_vitals.dart';
 import 'package:patient_link_prototype/screens/welcome.dart';
 
@@ -14,7 +15,7 @@ class MainApp extends StatelessWidget {
     return const MaterialApp(
       title: 'PatientLink Prototype',
       debugShowCheckedModeBanner: false,
-      home: UpdateVitals(),
+      home: UpdateMedicine(),
     );
   }
 }
