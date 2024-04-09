@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:patient_link_prototype/constants/app_styles.dart';
 
 class PatientInfoPage extends StatefulWidget {
   const PatientInfoPage({super.key});
@@ -54,22 +55,12 @@ class _PatientInfoPageState extends State<PatientInfoPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text('Real Niggas',
-                  style: GoogleFonts.inter(
-                      fontSize: 24,
-                      fontWeight: FontWeight.w600,
-                      color: const Color(0xFFFE8570))),
+                  style: interBold.copyWith(color: orange, fontSize: 24)),
               const SizedBox(height: 5),
               Text('June 26, 2024',
-                  style: GoogleFonts.inter(
-                      fontSize: 16,
-                      fontWeight: FontWeight.normal,
-                      color: const Color(0xFFFE8570))),
+                  style: interRegular.copyWith(color: orange, fontSize: 16)),
               Text('Date Admitted',
-                  style: GoogleFonts.inter(
-                      fontSize: 13,
-                      fontWeight: FontWeight.w400,
-                      fontStyle: FontStyle.italic,
-                      color: const Color(0xFFFE8570))),
+                  style: interItalic.copyWith(color: orange, fontSize: 13)),
             ],
           ),
           SizedBox(width: 50)
@@ -132,15 +123,11 @@ class _PatientInfoPageState extends State<PatientInfoPage> {
 
   Widget detailData(String content) {
     return Text(content,
-        style: GoogleFonts.inter(
-            fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black));
+        style: interBold.copyWith(fontSize: 24, color: Colors.black));
   }
 
   Widget detailHead(String content) {
     return Text(content,
-        style: GoogleFonts.inter(
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-            color: const Color(0xFFFE8570)));
+        style: interBold.copyWith(fontSize: 16, color: orange));
   }
 }
