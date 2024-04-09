@@ -246,7 +246,30 @@ class _UpdateMedPageState extends State<UpdateMedPage> {
           const SizedBox(height: 8),
           Row(
             children: [
-              textBox(191, 'Date'),
+              Container(
+                width: 191,
+                child: GestureDetector(
+                  onTap: () async {
+                    final DateTime? picked = await showDatePicker(
+                      context: context,
+                      initialDate: DateTime.now(),
+                      firstDate: DateTime(2000),
+                      lastDate: DateTime(2101),
+                    );
+                    if (picked != null) {
+                      // Handle selected date
+                    }
+                  },
+                  child: AbsorbPointer(
+                    child: TextFormField(
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'Select Date',
+                      ),
+                    ),
+                  ),
+                ),
+              ),
               const SizedBox(width: 8),
               textBox(191, 'Time'),
             ],
