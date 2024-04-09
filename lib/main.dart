@@ -14,7 +14,7 @@ class MainApp extends StatelessWidget {
     return const MaterialApp(
       title: 'PatientLink Prototype',
       debugShowCheckedModeBanner: false,
-      home: UpdateVitals(),
+      home: UpdateVitalsPage(),
     );
   }
 }
