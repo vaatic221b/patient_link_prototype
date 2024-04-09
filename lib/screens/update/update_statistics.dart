@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:patient_link_prototype/constants/app_styles.dart';
 
 class UpdateStatistics extends StatefulWidget {
@@ -25,6 +26,8 @@ class _UpdateStatisticsPageState extends State<UpdateStatistics> {
                 const SizedBox(
                   height: 24,
                 ),
+                update(),
+                confirmButton(),
               ],
             ),
           ),
@@ -263,11 +266,119 @@ class _UpdateStatisticsPageState extends State<UpdateStatistics> {
                   style: interBold.copyWith(
                     fontSize: 14,
                   ),
-                )
+                ),
               ],
             ),
           )
         ],
+      ),
+    );
+  }
+
+  Widget update() {
+    return Container(
+      height: 250,
+      width: 390,
+      child: Column(
+        children: [
+          Row(
+            children: [
+              Image.asset(
+                'assets/icons/information_icon.png',
+                width: 31,
+                height: 31,
+              ),
+              const SizedBox(width: 8),
+              Text(
+                'Update Statistics',
+                style: interBold.copyWith(fontSize: 20, color: orange),
+              ),
+            ],
+          ),
+          const SizedBox(height: 10),
+          textBox(390, 'Blood Pressure'),
+          SizedBox(
+            height: 8,
+          ),
+          Row(
+            children: [
+              textBox(191, 'Heart Rate'),
+              SizedBox(
+                width: 8,
+              ),
+              textBox(191, 'Glucose Level'),
+            ],
+          ),
+          SizedBox(
+            height: 8,
+          ),
+          Row(
+            children: [
+              textBox(191, 'Body Temperature'),
+              SizedBox(
+                width: 8,
+              ),
+              textBox(191, 'Oxygen Saturation'),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget confirmButton() {
+    return Container(
+      height: 44,
+      width: 390,
+      decoration:
+          BoxDecoration(borderRadius: BorderRadius.circular(12), color: orange),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(
+            height: 12,
+          ),
+          Row(
+            children: [
+              SizedBox(
+                width: 16,
+              ),
+              Image.asset(
+                'assets/icons/yes.png',
+                width: 20,
+                height: 20,
+              ),
+              SizedBox(
+                width: 4,
+              ),
+              Text(
+                'Confirm Updates',
+                style: interBold.copyWith(fontSize: 14, color: kWhite),
+              )
+            ],
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget textBox(width, description) {
+    return Container(
+      width: width,
+      child: TextFormField(
+        decoration: InputDecoration(
+          border: OutlineInputBorder(),
+          labelText: description,
+          floatingLabelStyle: MaterialStateTextStyle.resolveWith(
+            (Set<MaterialState> states) {
+              final Color color = states.contains(MaterialState.error)
+                  ? Theme.of(context).colorScheme.error
+                  : orange;
+              return TextStyle(color: color, letterSpacing: 1.3);
+            },
+          ),
+        ),
+        autovalidateMode: AutovalidateMode.always,
       ),
     );
   }
