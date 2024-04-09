@@ -520,7 +520,7 @@ class _PatientInfoPageState extends State<PatientInfoPage> {
       child: SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.0),
+            padding: EdgeInsets.symmetric(horizontal: 15.0),
             child: DataTable(
               headingRowColor:
                   MaterialStateColor.resolveWith((states) => lightOrange),
@@ -579,42 +579,6 @@ class _PatientInfoPageState extends State<PatientInfoPage> {
                   DataCell(Text('04:30 PM')),
                   DataCell(Text('Colonoscopy')),
                   DataCell(Text('No Debris were found in the colon')),
-                ]),
-                DataRow(cells: <DataCell>[
-                  DataCell(Text('')),
-                  DataCell(Text('')),
-                  DataCell(Text('')),
-                  DataCell(Text('')),
-                ]),
-                DataRow(cells: <DataCell>[
-                  DataCell(Text('')),
-                  DataCell(Text('')),
-                  DataCell(Text('')),
-                  DataCell(Text('')),
-                ]),
-                DataRow(cells: <DataCell>[
-                  DataCell(Text('')),
-                  DataCell(Text('')),
-                  DataCell(Text('')),
-                  DataCell(Text('')),
-                ]),
-                DataRow(cells: <DataCell>[
-                  DataCell(Text('')),
-                  DataCell(Text('')),
-                  DataCell(Text('')),
-                  DataCell(Text('')),
-                ]),
-                DataRow(cells: <DataCell>[
-                  DataCell(Text('')),
-                  DataCell(Text('')),
-                  DataCell(Text('')),
-                  DataCell(Text('')),
-                ]),
-                DataRow(cells: <DataCell>[
-                  DataCell(Text('')),
-                  DataCell(Text('')),
-                  DataCell(Text('')),
-                  DataCell(Text('')),
                 ]),
               ],
             ),
