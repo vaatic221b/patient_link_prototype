@@ -22,15 +22,13 @@ class _PatientInfoPageState extends State<PatientInfoPage> {
                   width: 400,
                   color: Colors.amber,
                 ),
-                                     
-            
+
+                //test
               ],
-            
             ),
           ),
         ),
       ),
     );
-
   }
 }
