@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:patient_link_prototype/constants/app_styles.dart';
 import 'package:patient_link_prototype/screens/select_category.dart';
 import 'package:patient_link_prototype/screens/patient_info.dart';
@@ -79,13 +80,8 @@ class _WelcomePageState extends State<WelcomePage> {
         );
       },
       child: Container(
-        width: 200,
-        height: 200,
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('assets/scanQR.png'),
-            fit: BoxFit.contain,
-          ),
+        child: MobileScanner(
+          onDetect: (capture) {},
         ),
       ),
     );
