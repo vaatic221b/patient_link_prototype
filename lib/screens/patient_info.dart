@@ -22,9 +22,7 @@ class _PatientInfoPageState extends State<PatientInfoPage> {
                 name(),
                 const SizedBox(height: 20),
                 details(),
-                const SizedBox(height: 20),
-
-                //test
+                doctors(),
               ],
             ),
           ),
@@ -36,7 +34,7 @@ class _PatientInfoPageState extends State<PatientInfoPage> {
   Widget name() {
     return SizedBox(
       height: 150,
-      width: 400,
+      width: 390,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -63,7 +61,7 @@ class _PatientInfoPageState extends State<PatientInfoPage> {
                   style: interItalic.copyWith(color: orange, fontSize: 13)),
             ],
           ),
-          SizedBox(width: 50)
+          const SizedBox(width: 20)
         ],
       ),
     );
@@ -71,8 +69,8 @@ class _PatientInfoPageState extends State<PatientInfoPage> {
 
   Widget details() {
     return SizedBox(
-      width: 400,
-      height: 100,
+      width: 390,
+      height: 80,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
@@ -129,5 +127,33 @@ class _PatientInfoPageState extends State<PatientInfoPage> {
   Widget detailHead(String content) {
     return Text(content,
         style: interBold.copyWith(fontSize: 16, color: orange));
+  }
+
+  Widget doctors() {
+    return Container(
+      height: 1720,
+      width: 390,
+      child: Column(
+        children: [
+          Row(
+            children: [
+              Image.asset(
+                'assets/icons/heart_icon.png',
+                width: 31,
+                height: 31,
+              ),
+              SizedBox(width: 8),
+              Text(
+                'Doctors Assigned',
+                style: interBold.copyWith(fontSize: 20, color: orange),
+              ),
+            ],
+          ),
+          Container(
+            child: Column(),
+          ),
+        ],
+      ),
+    );
   }
 }
