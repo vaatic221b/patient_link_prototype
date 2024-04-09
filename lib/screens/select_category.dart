@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:patient_link_prototype/constants/app_styles.dart';
 import 'package:patient_link_prototype/screens/update/update_medicine.dart';
 import 'package:patient_link_prototype/screens/update/update_operations.dart';
+import 'package:patient_link_prototype/screens/update/update_operationsConducted.dart';
 import 'package:patient_link_prototype/screens/update/update_vitals.dart';
 
 class EntryCategoryPage extends StatefulWidget {
@@ -16,7 +17,7 @@ class _EntryCategoryPageState extends State<EntryCategoryPage> {
     {'icon': 'assets/icons/heart_icon.png', 'label': 'Vital Statistics'},
     {'icon': 'assets/icons/med_icon.png', 'label': 'Medicine Track'},
     {'icon': 'assets/icons/glove_icon.png', 'label': 'Upcoming Operations'},
-    {'icon': 'assets/icons/sheet_icon.png', 'label': 'Operation History'},
+    {'icon': 'assets/icons/sheet_icon.png', 'label': 'Record Operation'},
   ];
 
   @override
@@ -258,13 +259,20 @@ class _EntryCategoryPageState extends State<EntryCategoryPage> {
                           context,
                           MaterialPageRoute(
                             builder: (context) {
-                              return const UpdateOperations();
+                              return const UpcomingOperationsPage();
                             },
                           ),
                         );
                         break;
                       case 3:
-                        // Navigate to Operation History page
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return const RecordOperationPage();
+                            },
+                          ),
+                        );
                         break;
                     }
                   },
