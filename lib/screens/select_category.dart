@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:patient_link_prototype/constants/app_styles.dart';
 import 'package:patient_link_prototype/screens/details/medicineTaken.dart';
 import 'package:patient_link_prototype/screens/details/vitals.dart';
-import 'package:patient_link_prototype/screens/update/update_statistics.dart';
+import 'package:patient_link_prototype/screens/update/update_medicine.dart';
+import 'package:patient_link_prototype/screens/update/update_vitals.dart';
 
 class EntryCategoryPage extends StatefulWidget {
   const EntryCategoryPage({super.key});
@@ -238,7 +239,7 @@ class _EntryCategoryPageState extends State<EntryCategoryPage> {
                           context,
                           MaterialPageRoute(
                             builder: (context) {
-                              return const UpdateVitalsPage();
+                              return const UpdateVitals();
                             },
                           ),
                         );
@@ -248,7 +249,7 @@ class _EntryCategoryPageState extends State<EntryCategoryPage> {
                           context,
                           MaterialPageRoute(
                             builder: (context) {
-                              return const MedicineLogsPage();
+                              return const UpdateMedicine();
                             },
                           ),
                         );
