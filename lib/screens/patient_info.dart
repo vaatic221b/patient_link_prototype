@@ -72,7 +72,7 @@ class _PatientInfoPageState extends State<PatientInfoPage> {
       width: 390,
       height: 80,
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           age(),
           weight(),
@@ -142,16 +142,25 @@ class _PatientInfoPageState extends State<PatientInfoPage> {
                 width: 31,
                 height: 31,
               ),
-              SizedBox(width: 8),
+              const SizedBox(width: 8),
               Text(
                 'Doctors Assigned',
                 style: interBold.copyWith(fontSize: 20, color: orange),
               ),
             ],
           ),
+          const SizedBox(height: 10),
           Container(
-            child: Column(),
-          ),
+            width: 390,
+            height: 100,
+            decoration: BoxDecoration(
+              color: const Color(0xFFFBEDE8),
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Column(
+              children: [],
+            ),
+          )
         ],
       ),
     );
