@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:patient_link_prototype/constants/app_styles.dart';
+import 'package:patient_link_prototype/screens/details/medicineTaken.dart';
+import 'package:patient_link_prototype/screens/details/vitals.dart';
 
 class PatientInfoPage extends StatefulWidget {
   const PatientInfoPage({super.key});
@@ -293,12 +295,24 @@ class _PatientInfoPageState extends State<PatientInfoPage> {
                       ],
                     ),
                   ),
-                  SizedBox(
-                    width: 35,
-                    height: 35,
-                    child: Image.asset(
-                      'assets/icons/dots_icon.png',
-                      fit: BoxFit.fill,
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return const VitalsLogsPage();
+                          },
+                        ),
+                      );
+                    },
+                    child: SizedBox(
+                      width: 35,
+                      height: 35,
+                      child: Image.asset(
+                        'assets/icons/dots_icon.png',
+                        fit: BoxFit.fill,
+                      ),
                     ),
                   ),
                 ],
@@ -356,12 +370,25 @@ class _PatientInfoPageState extends State<PatientInfoPage> {
   }
 
   Widget meds() {
+    // CHANGE TO LIST VIEW
     return SizedBox(
       width: 390,
       height: 202,
       child: Column(
         children: [
-          header('assets/icons/med_icon.png', 'Medicines Taken'),
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return const MedicineLogsPage();
+                  },
+                ),
+              );
+            },
+            child: header('assets/icons/med_icon.png', 'Medicines Taken'),
+          ),
           const SizedBox(height: 5),
           medicine('Paracetamol', 'Thrice a day', 'March 17, 2024'),
           const SizedBox(height: 5),

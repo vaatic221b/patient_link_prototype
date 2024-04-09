@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:patient_link_prototype/constants/app_styles.dart';
 
-class Vitals extends StatefulWidget {
-  const Vitals({super.key});
+class VitalsLogsPage extends StatefulWidget {
+  const VitalsLogsPage({super.key});
 
   @override
-  State<Vitals> createState() => _VitalsPageState();
+  State<VitalsLogsPage> createState() => _VitalsPageState();
 }
 
-class _VitalsPageState extends State<Vitals> {
+class _VitalsPageState extends State<VitalsLogsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -357,7 +357,7 @@ class _VitalsPageState extends State<Vitals> {
             ),
           )),
         ],
-        rows: <DataRow>[
+        rows: const <DataRow>[
           DataRow(cells: <DataCell>[
             DataCell(Text('5/26/2024')),
             DataCell(Text('3:00 PM')),
