@@ -51,11 +51,12 @@ class _MedicineTakenPageState extends State<MedicineLogsPage> {
               ),
             ),
           ),
+          const SizedBox(width: 15),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Daniel Caesar',
+              Text('Real Niggas',
                   style: interBold.copyWith(color: orange, fontSize: 24)),
               const SizedBox(height: 5),
               Text('June 26, 2024',
@@ -64,7 +65,20 @@ class _MedicineTakenPageState extends State<MedicineLogsPage> {
                   style: interItalic.copyWith(color: orange, fontSize: 13)),
             ],
           ),
-          const SizedBox(width: 20)
+          const Spacer(),
+          GestureDetector(
+            onTap: () {
+              Navigator.pop(context);
+            },
+            child: const Align(
+              alignment: Alignment.topRight,
+              child: Icon(
+                Icons.arrow_back_ios,
+                color: Color(0xFFFE8570),
+                size: 30,
+              ),
+            ),
+          )
         ],
       ),
     );

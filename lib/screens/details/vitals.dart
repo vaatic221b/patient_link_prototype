@@ -51,6 +51,7 @@ class _VitalsPageState extends State<VitalsLogsPage> {
               ),
             ),
           ),
+          const SizedBox(width: 15),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -64,7 +65,20 @@ class _VitalsPageState extends State<VitalsLogsPage> {
                   style: interItalic.copyWith(color: orange, fontSize: 13)),
             ],
           ),
-          const SizedBox(width: 20)
+          const Spacer(),
+          GestureDetector(
+            onTap: () {
+              Navigator.pop(context);
+            },
+            child: const Align(
+              alignment: Alignment.topRight,
+              child: Icon(
+                Icons.arrow_back_ios,
+                color: Color(0xFFFE8570),
+                size: 30,
+              ),
+            ),
+          )
         ],
       ),
     );
