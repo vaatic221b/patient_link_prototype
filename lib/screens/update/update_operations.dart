@@ -225,13 +225,13 @@ class _UpdateOperationsPageState extends State<UpdateOperations> {
               ),
               const SizedBox(width: 8),
               Text(
-                'Update Medicine Timetable',
+                'Add Operation',
                 style: interBold.copyWith(fontSize: 20, color: orange),
               ),
             ],
           ),
           const SizedBox(height: 10),
-          textBox(390, 'Generic Name'),
+          textBox(390, 'Type Of Operation'),
           const SizedBox(height: 8),
           Row(
             children: [
