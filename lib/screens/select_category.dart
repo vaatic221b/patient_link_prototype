@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:patient_link_prototype/constants/app_styles.dart';
+import 'package:patient_link_prototype/screens/details/medicineTaken.dart';
+import 'package:patient_link_prototype/screens/details/vitals.dart';
 
 class EntryCategoryPage extends StatefulWidget {
   const EntryCategoryPage({super.key});
@@ -213,31 +215,42 @@ class _EntryCategoryPageState extends State<EntryCategoryPage> {
   }
 
   Widget logCategory() {
-    return Container(
+    return SizedBox(
       width: 390,
       height: 500,
-      color: Colors.amber,
       child: Column(
         children: [
           header('assets/icons/info_icon.png', 'Add Log Entry To'),
           const SizedBox(height: 5),
-          Container(
+          SizedBox(
             width: 390,
-            height: 327,
-            color: Colors.white,
+            height: 400,
             child: GridView.count(
               crossAxisCount: 2,
               children: List.generate(
                 items.length,
                 (index) => GestureDetector(
                   onTap: () {
-                    // Navigate to the corresponding page based on index
                     switch (index) {
                       case 0:
-                        // Navigate to Vital Statistics page
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return const VitalsLogsPage();
+                            },
+                          ),
+                        );
                         break;
                       case 1:
-                        // Navigate to Medicine Track page
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return const MedicineLogsPage();
+                            },
+                          ),
+                        );
                         break;
                       case 2:
                         // Navigate to Upcoming Operations page
@@ -248,8 +261,12 @@ class _EntryCategoryPageState extends State<EntryCategoryPage> {
                     }
                   },
                   child: Container(
-                    margin: EdgeInsets.all(8),
-                    color: Colors.blue, // Set any color you want
+                    margin: const EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(12),
+                      border: Border.all(color: const Color(0xFFFE8570)),
+                    ),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -258,12 +275,12 @@ class _EntryCategoryPageState extends State<EntryCategoryPage> {
                           width: 64,
                           height: 64,
                         ),
-                        SizedBox(height: 8),
+                        const SizedBox(height: 8),
                         Text(
                           items[index]['label'],
-                          style: TextStyle(
+                          style: interRegular.copyWith(
                             fontSize: 16,
-                            fontWeight: FontWeight.bold,
+                            color: orange,
                           ),
                         ),
                       ],
