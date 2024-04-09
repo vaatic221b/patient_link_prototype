@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:patient_link_prototype/constants/app_styles.dart';
-import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 
 class UpdateMedPage extends StatefulWidget {
   const UpdateMedPage({super.key});
@@ -280,56 +279,35 @@ class _UpdateMedPageState extends State<UpdateMedPage> {
           const SizedBox(height: 10),
           textBox(390, 'Remarks'),
         ],
-        rows: <DataRow>[
-          DataRow(cells: <DataCell>[
-            DataCell(Text('5/26/2024')),
-            DataCell(Text('9:00 AM')),
-            DataCell(Text('Paracetamol & Losartan')),
-            DataCell(Text('1')),
-            DataCell(Text('Nurse Datan')),
-          ]),
-          DataRow(cells: <DataCell>[
-            DataCell(Text('5/26/2024')),
-            DataCell(Text('12:30 PM')),
-            DataCell(Text('Paracetamol & Losartan')),
-            DataCell(Text('1')),
-            DataCell(Text('Nurse Datan')),
-          ]),
-          DataRow(cells: <DataCell>[
-            DataCell(Text('5/26/2024')),
-            DataCell(Text('7:00 PM')),
-            DataCell(Text('Paracetamol ')),
-            DataCell(Text('1')),
-            DataCell(Text('Nurse Sucalit')),
-          ]),
-          DataRow(cells: <DataCell>[
-            DataCell(Text('5/27/2024')),
-            DataCell(Text('09:00 AM')),
-            DataCell(Text('Paracetamol & Losartan')),
-            DataCell(Text('1')),
-            DataCell(Text('Nurse Sucalit')),
-          ]),
-          DataRow(cells: <DataCell>[
-            DataCell(Text('')),
-            DataCell(Text('')),
-            DataCell(Text('')),
-            DataCell(Text('')),
-            DataCell(Text('')),
-          ]),
-          DataRow(cells: <DataCell>[
-            DataCell(Text('')),
-            DataCell(Text('')),
-            DataCell(Text('')),
-            DataCell(Text('')),
-            DataCell(Text('')),
-          ]),
-          DataRow(cells: <DataCell>[
-            DataCell(Text('')),
-            DataCell(Text('')),
-            DataCell(Text('')),
-            DataCell(Text('')),
-            DataCell(Text('')),
-          ]),
+      ),
+    );
+  }
+
+  Widget confirmButton() {
+    return Container(
+      height: 44,
+      width: 390,
+      decoration:
+          BoxDecoration(borderRadius: BorderRadius.circular(12), color: orange),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const SizedBox(height: 12),
+          Row(
+            children: [
+              const SizedBox(width: 16),
+              Image.asset(
+                'assets/icons/yes.png',
+                width: 20,
+                height: 20,
+              ),
+              const SizedBox(width: 4),
+              Text(
+                'Confirm Updates',
+                style: interBold.copyWith(fontSize: 14, color: kWhite),
+              )
+            ],
+          )
         ],
       ),
     );
