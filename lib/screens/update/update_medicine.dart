@@ -224,7 +224,7 @@ class _UpdateMedPageState extends State<UpdateMedPage> {
     TextEditingController dateController = TextEditingController();
 
     return SizedBox(
-      height: 300,
+      height: 350,
       width: 390,
       child: Column(
         children: [
@@ -242,7 +242,7 @@ class _UpdateMedPageState extends State<UpdateMedPage> {
               ),
             ],
           ),
-          const SizedBox(height: 10),
+          const SizedBox(height: 20),
           textBox(390, 'Generic Name'),
           const SizedBox(height: 8),
           Row(
