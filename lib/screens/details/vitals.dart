@@ -22,7 +22,10 @@ class _VitalsPageState extends State<Vitals> {
                 const SizedBox(height: 20),
                 details(),
                 vitalsStatistics(),
-                // history(),
+                const SizedBox(
+                  height: 24,
+                ),
+                history(),
               ],
             ),
           ),
@@ -131,7 +134,7 @@ class _VitalsPageState extends State<Vitals> {
 
   Widget vitalsStatistics() {
     return Container(
-      height: 1720,
+      height: 274,
       width: 390,
       child: Column(
         children: [
@@ -256,7 +259,177 @@ class _VitalsPageState extends State<Vitals> {
     );
   }
 
-  // Widget history() {
-  //   return
-  // }
+  Widget history() {
+    return Column(
+      children: [
+        Padding(
+          padding: EdgeInsets.only(left: 20, right: 20),
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'History',
+                    style: interBold.copyWith(fontSize: 20, color: orange),
+                  ),
+                  Image.asset(
+                    'assets/icons/dots.png',
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 8,
+              ),
+              historyTable(),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget historyTable() {
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: DataTable(
+        headingRowColor:
+            MaterialStateColor.resolveWith((states) => lightOrange),
+        border: TableBorder(
+            horizontalInside: BorderSide(color: orange),
+            top: BorderSide(color: orange),
+            bottom: BorderSide(color: orange)),
+        columns: <DataColumn>[
+          DataColumn(
+              label: Text(
+            'Date',
+            style: interBold.copyWith(
+              fontSize: 14,
+            ),
+          )),
+          DataColumn(
+              label: Text(
+            'Time',
+            style: interBold.copyWith(
+              fontSize: 14,
+            ),
+          )),
+          DataColumn(
+              label: Text(
+            'BP',
+            style: interBold.copyWith(
+              fontSize: 14,
+            ),
+          )),
+          DataColumn(
+              label: Text(
+            'HR',
+            style: interBold.copyWith(
+              fontSize: 14,
+            ),
+          )),
+          DataColumn(
+              label: Text(
+            'Glucose Lvl',
+            style: interBold.copyWith(
+              fontSize: 14,
+            ),
+          )),
+          DataColumn(
+              label: Text(
+            'Body Temp',
+            style: interBold.copyWith(
+              fontSize: 14,
+            ),
+          )),
+          DataColumn(
+              label: Text(
+            'Oxy Saturation',
+            style: interBold.copyWith(
+              fontSize: 14,
+            ),
+          )),
+          DataColumn(
+              label: Text(
+            'Respiratory Rate',
+            style: interBold.copyWith(
+              fontSize: 14,
+            ),
+          )),
+        ],
+        rows: <DataRow>[
+          DataRow(cells: <DataCell>[
+            DataCell(Text('5/26/2024')),
+            DataCell(Text('3:00 PM')),
+            DataCell(Text('140/90')),
+            DataCell(Text('95')),
+            DataCell(Text('99')),
+            DataCell(Text('37')),
+            DataCell(Text('29')),
+            DataCell(Text('30')),
+          ]),
+          DataRow(cells: <DataCell>[
+            DataCell(Text('5/27/2024')),
+            DataCell(Text('4:30 PM')),
+            DataCell(Text('130/85')),
+            DataCell(Text('90')),
+            DataCell(Text('102')),
+            DataCell(Text('37.5')),
+            DataCell(Text('30')),
+            DataCell(Text('32')),
+          ]),
+          DataRow(cells: <DataCell>[
+            DataCell(Text('5/28/2024')),
+            DataCell(Text('2:15 PM')),
+            DataCell(Text('135/88')),
+            DataCell(Text('92')),
+            DataCell(Text('97')),
+            DataCell(Text('36.8')),
+            DataCell(Text('31')),
+            DataCell(Text('29')),
+          ]),
+          DataRow(cells: <DataCell>[
+            DataCell(Text('5/29/2024')),
+            DataCell(Text('10:00 AM')),
+            DataCell(Text('142/95')),
+            DataCell(Text('96')),
+            DataCell(Text('105')),
+            DataCell(Text('37.2')),
+            DataCell(Text('28')),
+            DataCell(Text('28')),
+          ]),
+          DataRow(cells: <DataCell>[
+            DataCell(Text('')),
+            DataCell(Text('')),
+            DataCell(Text('')),
+            DataCell(Text('')),
+            DataCell(Text('')),
+            DataCell(Text('')),
+            DataCell(Text('')),
+            DataCell(Text('')),
+          ]),
+          DataRow(cells: <DataCell>[
+            DataCell(Text('')),
+            DataCell(Text('')),
+            DataCell(Text('')),
+            DataCell(Text('')),
+            DataCell(Text('')),
+            DataCell(Text('')),
+            DataCell(Text('')),
+            DataCell(Text('')),
+          ]),
+          DataRow(cells: <DataCell>[
+            DataCell(Text('')),
+            DataCell(Text('')),
+            DataCell(Text('')),
+            DataCell(Text('')),
+            DataCell(Text('')),
+            DataCell(Text('')),
+            DataCell(Text('')),
+            DataCell(Text('')),
+          ]),
+        ],
+      ),
+    );
+  }
 }
