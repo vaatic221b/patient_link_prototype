@@ -29,6 +29,8 @@ class _PatientInfoPageState extends State<PatientInfoPage> {
                 meds(),
                 operations(),
                 const SizedBox(height: 5),
+                historyOperation(),
+                const SizedBox(height: 5),
                 history(),
               ],
             ),
@@ -486,74 +488,137 @@ class _PatientInfoPageState extends State<PatientInfoPage> {
     );
   }
 
-  Widget history() {
-    // NEED TO IMPLEMENT MODEL FOR OPERATION HISTORY IF HAVE TIME
-    return SizedBox(
-      height: 160,
+  Widget historyOperation() {
+    return Container(
+      height: 41,
       width: 390,
       child: Column(
         children: [
-          header('assets/icons/sheet_icon.png', 'Operation History'),
-          const SizedBox(height: 5),
-          Container(
-            width: 390,
-            height: 115,
-            decoration: BoxDecoration(
-                color: const Color(0xFFFBEDE8),
-                borderRadius: BorderRadius.circular(12)),
-            child: Padding(
-              padding: const EdgeInsets.only(right: 5),
-              child: RawScrollbar(
-                thumbVisibility: true,
-                thumbColor: const Color(0xFFFE8570),
-                radius: const Radius.circular(20),
-                child: ListView.separated(
-                  padding: const EdgeInsets.fromLTRB(15, 15, 15, 15),
-                  scrollDirection: Axis.vertical,
-                  itemCount: 3,
-                  separatorBuilder: (BuildContext context, int index) =>
-                      const SizedBox(height: 8),
-                  itemBuilder: (BuildContext context, int index) {
-                    return Container(
-                      width: 358,
-                      height: 36,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(12)),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Text(
-                            'Date, 2024',
-                            style: interBold.copyWith(
-                              fontSize: 10,
-                            ),
-                          ),
-                          Text(
-                            'Heart Surgery',
-                            style:
-                                interBold.copyWith(fontSize: 10, color: orange),
-                          ),
-                          Text(
-                            'Dr. Alice Willis',
-                            style:
-                                interBold.copyWith(fontSize: 10, color: orange),
-                          ),
-                          Text(
-                            'Perpetual Hospital',
-                            style:
-                                interBold.copyWith(fontSize: 10, color: orange),
-                          )
-                        ],
-                      ),
-                    );
-                  },
-                ),
+          Row(
+            children: [
+              Image.asset(
+                'assets/icons/sheet_icon.png',
+                width: 31,
+                height: 31,
               ),
-            ),
-          )
+              const SizedBox(width: 8),
+              Text(
+                'Operation History',
+                style: interBold.copyWith(fontSize: 20, color: orange),
+              ),
+            ],
+          ),
+          const SizedBox(height: 10),
         ],
       ),
+    );
+  }
+
+  Widget history() {
+    return Container(
+      width: 390,
+      child: SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20.0),
+            child: DataTable(
+              headingRowColor:
+                  MaterialStateColor.resolveWith((states) => lightOrange),
+              border: TableBorder(
+                horizontalInside: BorderSide(color: orange),
+                top: BorderSide(color: orange),
+                bottom: BorderSide(color: orange),
+              ),
+              columns: <DataColumn>[
+                DataColumn(
+                  label: Text(
+                    'Date',
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                DataColumn(
+                  label: Text(
+                    'Type',
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                DataColumn(
+                  label: Text(
+                    'Surgeon',
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                DataColumn(
+                  label: Text(
+                    'Remarks',
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ],
+              rows: <DataRow>[
+                DataRow(cells: <DataCell>[
+                  DataCell(Text('5/26/2024')),
+                  DataCell(Text('2:00 PM')),
+                  DataCell(Text('Endoscopy')),
+                  DataCell(Text('Clumps were found in the esophagus')),
+                ]),
+                DataRow(cells: <DataCell>[
+                  DataCell(Text('5/26/2024')),
+                  DataCell(Text('04:30 PM')),
+                  DataCell(Text('Colonoscopy')),
+                  DataCell(Text('No Debris were found in the colon')),
+                ]),
+                DataRow(cells: <DataCell>[
+                  DataCell(Text('')),
+                  DataCell(Text('')),
+                  DataCell(Text('')),
+                  DataCell(Text('')),
+                ]),
+                DataRow(cells: <DataCell>[
+                  DataCell(Text('')),
+                  DataCell(Text('')),
+                  DataCell(Text('')),
+                  DataCell(Text('')),
+                ]),
+                DataRow(cells: <DataCell>[
+                  DataCell(Text('')),
+                  DataCell(Text('')),
+                  DataCell(Text('')),
+                  DataCell(Text('')),
+                ]),
+                DataRow(cells: <DataCell>[
+                  DataCell(Text('')),
+                  DataCell(Text('')),
+                  DataCell(Text('')),
+                  DataCell(Text('')),
+                ]),
+                DataRow(cells: <DataCell>[
+                  DataCell(Text('')),
+                  DataCell(Text('')),
+                  DataCell(Text('')),
+                  DataCell(Text('')),
+                ]),
+                DataRow(cells: <DataCell>[
+                  DataCell(Text('')),
+                  DataCell(Text('')),
+                  DataCell(Text('')),
+                  DataCell(Text('')),
+                ]),
+              ],
+            ),
+          )),
     );
   }
 }
