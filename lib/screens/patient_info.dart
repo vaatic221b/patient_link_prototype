@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:patient_link_prototype/constants/app_styles.dart';
+import 'package:patient_link_prototype/screens/details/medicineTaken.dart';
+import 'package:patient_link_prototype/screens/details/vitals.dart';
 
 class PatientInfoPage extends StatefulWidget {
   const PatientInfoPage({super.key});
@@ -25,8 +27,9 @@ class _PatientInfoPageState extends State<PatientInfoPage> {
                 const SizedBox(height: 20),
                 vitals(),
                 meds(),
-                const SizedBox(height: 20),
-                meds(),
+                operations(),
+                const SizedBox(height: 5),
+                history(),
               ],
             ),
           ),
@@ -52,6 +55,7 @@ class _PatientInfoPageState extends State<PatientInfoPage> {
               ),
             ),
           ),
+          const SizedBox(width: 15),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -65,7 +69,20 @@ class _PatientInfoPageState extends State<PatientInfoPage> {
                   style: interItalic.copyWith(color: orange, fontSize: 13)),
             ],
           ),
-          const SizedBox(width: 20)
+          const Spacer(),
+          GestureDetector(
+            onTap: () {
+              Navigator.pop(context);
+            },
+            child: const Align(
+              alignment: Alignment.topRight,
+              child: Icon(
+                Icons.arrow_back_ios,
+                color: Color(0xFFFE8570),
+                size: 30,
+              ),
+            ),
+          )
         ],
       ),
     );
@@ -134,6 +151,7 @@ class _PatientInfoPageState extends State<PatientInfoPage> {
   }
 
   Widget doctors() {
+    // NEED TO IMPLEMENT MODEL FOR DOCTORS IF HAVE TIME
     return SizedBox(
       height: 216,
       width: 390,
@@ -291,12 +309,24 @@ class _PatientInfoPageState extends State<PatientInfoPage> {
                       ],
                     ),
                   ),
-                  SizedBox(
-                    width: 35,
-                    height: 35,
-                    child: Image.asset(
-                      'assets/icons/dots_icon.png',
-                      fit: BoxFit.fill,
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return const VitalsLogsPage();
+                          },
+                        ),
+                      );
+                    },
+                    child: SizedBox(
+                      width: 35,
+                      height: 35,
+                      child: Image.asset(
+                        'assets/icons/dots_icon.png',
+                        fit: BoxFit.fill,
+                      ),
                     ),
                   ),
                 ],
@@ -354,13 +384,174 @@ class _PatientInfoPageState extends State<PatientInfoPage> {
   }
 
   Widget meds() {
-    return Container(
+    // CHANGE TO LIST VIEW
+    return SizedBox(
       width: 390,
-      height: 200,
-      color: Colors.amber,
+      height: 202,
       child: Column(
         children: [
-          header('assets/icons/med_icon.png', 'Medicines Taken'),
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return const MedicineLogsPage();
+                  },
+                ),
+              );
+            },
+            child: header('assets/icons/med_icon.png', 'Medicines Taken'),
+          ),
+          const SizedBox(height: 5),
+          medicine('Paracetamol', 'Thrice a day', 'March 17, 2024'),
+          const SizedBox(height: 5),
+          medicine('Paracetamol', 'Thrice a day', 'March 17, 2024'),
+        ],
+      ),
+    );
+  }
+
+  Widget medicine(medName, instruction, date) {
+    return Container(
+      width: 390,
+      height: 75,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(color: const Color(0xFFFE8570)),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(5),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              medName,
+              style: interBold.copyWith(fontSize: 14, color: black),
+            ),
+            Text('Instructions: $instruction',
+                style: interItalic.copyWith(fontSize: 12)),
+            Text('Date medication began: $date',
+                style: interItalic.copyWith(fontSize: 12)),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget operations() {
+    return SizedBox(
+      height: 140,
+      width: 390,
+      child: Column(
+        children: [
+          header('assets/icons/glove_icon.png', 'Upcoming Operation'),
+          const SizedBox(height: 5),
+          operation('Dialysis', 'July 13, 2024', 'Dr. Jane Doe', 'Dr. Jane Doe')
+        ],
+      ),
+    );
+  }
+
+  Widget operation(name, schedule, administer, suggested) {
+    return Container(
+      width: 390,
+      height: 100,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(color: const Color(0xFFFE8570)),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(5),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              name,
+              style: interBold.copyWith(fontSize: 14, color: black),
+            ),
+            Text('Date of operation: $schedule',
+                style: interItalic.copyWith(fontSize: 12)),
+            Text('To be administered by: $administer',
+                style: interItalic.copyWith(fontSize: 12)),
+            Text('Suggested by: $schedule',
+                style: interItalic.copyWith(fontSize: 12)),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget history() {
+    // NEED TO IMPLEMENT MODEL FOR OPERATION HISTORY IF HAVE TIME
+    return SizedBox(
+      height: 160,
+      width: 390,
+      child: Column(
+        children: [
+          header('assets/icons/sheet_icon.png', 'Operation History'),
+          const SizedBox(height: 5),
+          Container(
+            width: 390,
+            height: 115,
+            decoration: BoxDecoration(
+                color: const Color(0xFFFBEDE8),
+                borderRadius: BorderRadius.circular(12)),
+            child: Padding(
+              padding: const EdgeInsets.only(right: 5),
+              child: RawScrollbar(
+                thumbVisibility: true,
+                thumbColor: const Color(0xFFFE8570),
+                radius: const Radius.circular(20),
+                child: ListView.separated(
+                  padding: const EdgeInsets.fromLTRB(15, 15, 15, 15),
+                  scrollDirection: Axis.vertical,
+                  itemCount: 3,
+                  separatorBuilder: (BuildContext context, int index) =>
+                      const SizedBox(height: 8),
+                  itemBuilder: (BuildContext context, int index) {
+                    return Container(
+                      width: 358,
+                      height: 36,
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(12)),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Text(
+                            'Date, 2024',
+                            style: interBold.copyWith(
+                              fontSize: 10,
+                            ),
+                          ),
+                          Text(
+                            'Heart Surgery',
+                            style:
+                                interBold.copyWith(fontSize: 10, color: orange),
+                          ),
+                          Text(
+                            'Dr. Alice Willis',
+                            style:
+                                interBold.copyWith(fontSize: 10, color: orange),
+                          ),
+                          Text(
+                            'Perpetual Hospital',
+                            style:
+                                interBold.copyWith(fontSize: 10, color: orange),
+                          )
+                        ],
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ),
+          )
         ],
       ),
     );

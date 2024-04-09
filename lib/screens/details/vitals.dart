@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:patient_link_prototype/constants/app_styles.dart';
 
-class Vitals extends StatefulWidget {
-  const Vitals({super.key});
+class VitalsLogsPage extends StatefulWidget {
+  const VitalsLogsPage({super.key});
 
   @override
-  State<Vitals> createState() => _VitalsPageState();
+  State<VitalsLogsPage> createState() => _VitalsPageState();
 }
 
-class _VitalsPageState extends State<Vitals> {
+class _VitalsPageState extends State<VitalsLogsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,6 +51,7 @@ class _VitalsPageState extends State<Vitals> {
               ),
             ),
           ),
+          const SizedBox(width: 15),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -64,7 +65,20 @@ class _VitalsPageState extends State<Vitals> {
                   style: interItalic.copyWith(color: orange, fontSize: 13)),
             ],
           ),
-          const SizedBox(width: 20)
+          const Spacer(),
+          GestureDetector(
+            onTap: () {
+              Navigator.pop(context);
+            },
+            child: const Align(
+              alignment: Alignment.topRight,
+              child: Icon(
+                Icons.arrow_back_ios,
+                color: Color(0xFFFE8570),
+                size: 30,
+              ),
+            ),
+          )
         ],
       ),
     );
@@ -357,7 +371,7 @@ class _VitalsPageState extends State<Vitals> {
             ),
           )),
         ],
-        rows: <DataRow>[
+        rows: const <DataRow>[
           DataRow(cells: <DataCell>[
             DataCell(Text('5/26/2024')),
             DataCell(Text('3:00 PM')),
