@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:patient_link_prototype/screens/details/medicineTaken.dart';
 import 'package:patient_link_prototype/screens/details/vitals.dart';
 import 'package:patient_link_prototype/screens/welcome.dart';
 
