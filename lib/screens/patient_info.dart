@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:patient_link_prototype/constants/app_styles.dart';
 
 class PatientInfoPage extends StatefulWidget {
