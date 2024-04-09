@@ -238,7 +238,7 @@ class _EntryCategoryPageState extends State<EntryCategoryPage> {
                           context,
                           MaterialPageRoute(
                             builder: (context) {
-                              return const UpdateVitalsPage();
+                              return const UpdateVitals();
                             },
                           ),
                         );

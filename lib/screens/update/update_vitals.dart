@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:patient_link_prototype/constants/app_styles.dart';
 
-class UpdateVitalsPage extends StatefulWidget {
-  const UpdateVitalsPage({super.key});
+class UpdateVitals extends StatefulWidget {
+  const UpdateVitals({super.key});
 
   @override
-  State<UpdateVitalsPage> createState() => _UpdateStatisticsPageState();
+  State<UpdateVitals> createState() => _UpdateVitalsPageState();
 }
 
-class _UpdateStatisticsPageState extends State<UpdateVitalsPage> {
+class _UpdateVitalsPageState extends State<UpdateVitals> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
