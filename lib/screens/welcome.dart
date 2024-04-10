@@ -216,7 +216,7 @@ class _WelcomePageState extends State<WelcomePage> {
               ],
             ),
             Text('(For medical professionals only)',
-                style: interRegular.copyWith(fontSize: 9, color: orange)),
+                style: interRegular.copyWith(fontSize: 1, color: orange)),
           ],
         ));
   }

@@ -9,7 +9,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_slidable: ^3.1.0
   google_fonts: ^6.2.1
+  hive_flutter: ^1.1.0
   mobile_scanner: ^4.0.1
 
 dev_dependencies:
@@ -17,6 +19,7 @@ dev_dependencies:
     sdk: flutter
   flutter_lints: ^3.0.0
   flutter_datetime_picker: ^1.5.1
+  hive: ^2.2.3
 
 flutter:
   uses-material-design: true

@@ -1,33 +1,51 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:patient_link_prototype/constants/app_styles.dart';
+import 'package:patient_link_prototype/data/db_medicine.dart';
 
 class UpdateMedPage extends StatefulWidget {
-  const UpdateMedPage({super.key});
+  const UpdateMedPage({Key? key}) : super(key: key);
 
   @override
   State<UpdateMedPage> createState() => _UpdateMedPageState();
 }
 
 class _UpdateMedPageState extends State<UpdateMedPage> {
+  MedicineDatabase medicineDatabase = MedicineDatabase();
+  final _mybox = Hive.box('medicineBox');
+  TextEditingController medicineController = TextEditingController();
+  TextEditingController dateController = TextEditingController();
+  TextEditingController timeController = TextEditingController();
+  TextEditingController dosageController = TextEditingController();
+  TextEditingController administeredByController = TextEditingController();
+  void initState() {
+    if (_mybox.get("medicineHistory") == null) {
+      medicineDatabase.createInitialData();
+    } else {
+      medicineDatabase.loadData();
+    }
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(0, 30, 0, 30),
-          child: Center(
-            child: Column(
-              children: [
-                name(),
-                const SizedBox(height: 20),
-                details(),
-                medicine(),
-                const SizedBox(height: 24),
-                update(),
-                const SizedBox(height: 5),
-                confirmButton()
-              ],
-            ),
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              name(),
+              const SizedBox(height: 20),
+              details(),
+              medicine(),
+              const SizedBox(height: 24),
+              update(),
+              const SizedBox(height: 5),
+              confirmButton(),
+            ],
           ),
         ),
       ),
@@ -178,51 +196,66 @@ class _UpdateMedPageState extends State<UpdateMedPage> {
   }
 
   Widget meds(String meds, String instructions, String dateBegan) {
-    return Container(
-      height: 75,
-      width: 390,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(
-          color: orange,
-        ),
+    return Padding(
+      padding: EdgeInsets.only(
+        right: 25,
       ),
-      child: Padding(
-        padding: const EdgeInsets.only(left: 12.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(height: 12),
-            Padding(
-              padding: const EdgeInsets.only(left: 16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    meds,
-                    style: interBold.copyWith(fontSize: 14),
+      child: Slidable(
+        endActionPane: ActionPane(motion: StretchMotion(), children: [
+          SlidableAction(
+            onPressed: (context) {
+              // Implement delete functionality here
+            },
+            icon: Icons.delete,
+            backgroundColor: Colors.red.shade300,
+            borderRadius: BorderRadius.circular(12),
+          ),
+        ]),
+        child: Container(
+          height: 75,
+          width: 390,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(
+              color: orange,
+            ),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.only(left: 12.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: 12),
+                Padding(
+                  padding: const EdgeInsets.only(left: 16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        meds,
+                        style: interBold.copyWith(fontSize: 14),
+                      ),
+                      const SizedBox(height: 2),
+                      Text(
+                        'Instructions: $instructions',
+                        style: interItalic.copyWith(fontSize: 12),
+                      ),
+                      Text(
+                        'Date Began: $dateBegan',
+                        style: interItalic.copyWith(fontSize: 12),
+                      ),
+                    ],
                   ),
-                  const SizedBox(height: 2),
-                  Text(
-                    'Instructions: $instructions',
-                    style: interItalic.copyWith(fontSize: 12),
-                  ),
-                  Text(
-                    'Date Began: $dateBegan',
-                    style: interItalic.copyWith(fontSize: 12),
-                  ),
-                ],
-              ),
-            )
-          ],
+                )
+              ],
+            ),
+          ),
         ),
       ),
     );
   }
 
   Widget update() {
-    TextEditingController dateController = TextEditingController();
-
     return SizedBox(
       height: 350,
       width: 390,
@@ -243,7 +276,7 @@ class _UpdateMedPageState extends State<UpdateMedPage> {
             ],
           ),
           const SizedBox(height: 20),
-          textBox(390, 'Generic Name'),
+          textBox(390, 'Generic Name', medicineController),
           const SizedBox(height: 8),
           Row(
             children: [
@@ -257,7 +290,6 @@ class _UpdateMedPageState extends State<UpdateMedPage> {
                       lastDate: DateTime(2101),
                     );
                     if (picked != null) {
-                      // Handle selected date
                       dateController.text =
                           "${picked.month}/${picked.day}/${picked.year}";
                     }
@@ -268,74 +300,59 @@ class _UpdateMedPageState extends State<UpdateMedPage> {
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
                         labelText: 'Select Date',
-                        suffixIcon: Icon(Icons.calendar_today,
-                            color: Color(0xFFFE8570)),
+                        suffixIcon: Icon(Icons.calendar_today),
                       ),
                     ),
                   ),
                 ),
               ),
               const SizedBox(width: 8),
-              textBox(191, 'Time'),
+              textBox(191, 'Time', timeController),
             ],
           ),
           const SizedBox(height: 10),
-          textBox(390, 'Suggested by'),
+          textBox(390, 'Dosage', dosageController),
           const SizedBox(height: 10),
-          textBox(390, 'Remarks'),
+          textBox(390, 'Administered By', administeredByController),
         ],
       ),
     );
   }
 
   Widget confirmButton() {
-    return Container(
-      height: 44,
-      width: 390,
-      decoration:
-          BoxDecoration(borderRadius: BorderRadius.circular(12), color: orange),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const SizedBox(height: 12),
-          Row(
-            children: [
-              const SizedBox(width: 16),
-              Image.asset(
-                'assets/icons/yes.png',
-                width: 20,
-                height: 20,
-              ),
-              const SizedBox(width: 4),
-              Text(
-                'Confirm Updates',
-                style: interBold.copyWith(fontSize: 14, color: kWhite),
-              )
-            ],
-          )
-        ],
-      ),
+    return ElevatedButton(
+      onPressed: () {
+        addMedicineToHistory();
+      },
+      child: const Text('Confirm Updates'),
     );
   }
 
-  Widget textBox(width, description) {
+  Widget textBox(width, description, TextEditingController controller) {
     return SizedBox(
       width: width,
       child: TextFormField(
+        controller: controller,
         decoration: InputDecoration(
           border: const OutlineInputBorder(),
           labelText: description,
-          floatingLabelStyle: MaterialStateTextStyle.resolveWith(
-            (Set<MaterialState> states) {
-              final Color color = states.contains(MaterialState.error)
-                  ? Theme.of(context).colorScheme.error
-                  : orange;
-              return TextStyle(color: color, letterSpacing: 1.3);
-            },
-          ),
         ),
         autovalidateMode: AutovalidateMode.always,
       ),
     );
+  }
+
+  void addMedicineToHistory() {
+    String medicine = medicineController.text;
+    String date = dateController.text;
+    String time = timeController.text;
+    String dosage = dosageController.text;
+    String administeredBy = administeredByController.text;
+
+    medicineDatabase.medicineHistory
+        .add([date, time, medicine, dosage, administeredBy]);
+    medicineDatabase.updateDatabase();
+
+    setState(() {});
   }
 }
