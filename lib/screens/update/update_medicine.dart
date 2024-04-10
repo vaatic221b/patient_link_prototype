@@ -320,11 +320,32 @@ class _UpdateMedPageState extends State<UpdateMedPage> {
   }
 
   Widget confirmButton() {
-    return ElevatedButton(
-      onPressed: () {
-        addMedicineToHistory();
-      },
-      child: const Text('Confirm Updates'),
+    return Container(
+      height: 44,
+      width: 390,
+      decoration:
+          BoxDecoration(borderRadius: BorderRadius.circular(12), color: orange),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const SizedBox(height: 12),
+          Row(
+            children: [
+              const SizedBox(width: 16),
+              Image.asset(
+                'assets/icons/yes.png',
+                width: 20,
+                height: 20,
+              ),
+              const SizedBox(width: 4),
+              Text(
+                'Confirm Updates',
+                style: interBold.copyWith(fontSize: 14, color: kWhite),
+              )
+            ],
+          )
+        ],
+      ),
     );
   }
 
