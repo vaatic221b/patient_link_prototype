@@ -1,3 +1,7 @@
+// ignore_for_file: unused_local_variable
+
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
@@ -68,23 +72,24 @@ class _WelcomePageState extends State<WelcomePage> {
   }
 
   Widget scanQR() {
-    return GestureDetector(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) {
-              return const EntryCategoryPage();
-            },
-          ),
-        );
-      },
-      child: Container(
-        child: MobileScanner(
-          onDetect: (capture) {},
+    return GestureDetector(onTap: () {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) {
+            return const EntryCategoryPage();
+          },
         ),
-      ),
-    );
+      );
+    }, child: MobileScanner(
+      onDetect: (capture) {
+        final List<Barcode> barcodes = capture.barcodes;
+        final Uint8List? image = capture.image;
+        for (final barcode in barcodes) {
+          debugPrint('Barcode found! ${barcode.rawValue}');
+        }
+      },
+    ));
   }
 
   Widget alternative() {
