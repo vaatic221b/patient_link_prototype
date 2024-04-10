@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:patient_link_prototype/constants/app_styles.dart';
+import 'package:patient_link_prototype/data/db_medicine.dart';
 
 class MedicineLogsPage extends StatefulWidget {
   const MedicineLogsPage({super.key});
@@ -9,6 +11,19 @@ class MedicineLogsPage extends StatefulWidget {
 }
 
 class _MedicineTakenPageState extends State<MedicineLogsPage> {
+  MedicineDatabase medicineDatabase = MedicineDatabase();
+  final _mybox = Hive.box('medicineBox');
+
+  @override
+  void initState() {
+    if (_mybox.get("medicineHistory") == null) {
+      medicineDatabase.createInitialData();
+    } else {
+      medicineDatabase.loadData();
+    }
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -297,56 +312,15 @@ class _MedicineTakenPageState extends State<MedicineLogsPage> {
             ),
           )),
         ],
-        rows: const <DataRow>[
-          DataRow(cells: <DataCell>[
-            DataCell(Text('5/26/2024')),
-            DataCell(Text('9:00 AM')),
-            DataCell(Text('Paracetamol & Losartan')),
-            DataCell(Text('1')),
-            DataCell(Text('Nurse Datan')),
-          ]),
-          DataRow(cells: <DataCell>[
-            DataCell(Text('5/26/2024')),
-            DataCell(Text('12:30 PM')),
-            DataCell(Text('Paracetamol & Losartan')),
-            DataCell(Text('1')),
-            DataCell(Text('Nurse Datan')),
-          ]),
-          DataRow(cells: <DataCell>[
-            DataCell(Text('5/26/2024')),
-            DataCell(Text('7:00 PM')),
-            DataCell(Text('Paracetamol ')),
-            DataCell(Text('1')),
-            DataCell(Text('Nurse Sucalit')),
-          ]),
-          DataRow(cells: <DataCell>[
-            DataCell(Text('5/27/2024')),
-            DataCell(Text('09:00 AM')),
-            DataCell(Text('Paracetamol & Losartan')),
-            DataCell(Text('1')),
-            DataCell(Text('Nurse Sucalit')),
-          ]),
-          DataRow(cells: <DataCell>[
-            DataCell(Text('')),
-            DataCell(Text('')),
-            DataCell(Text('')),
-            DataCell(Text('')),
-            DataCell(Text('')),
-          ]),
-          DataRow(cells: <DataCell>[
-            DataCell(Text('')),
-            DataCell(Text('')),
-            DataCell(Text('')),
-            DataCell(Text('')),
-            DataCell(Text('')),
-          ]),
-          DataRow(cells: <DataCell>[
-            DataCell(Text('')),
-            DataCell(Text('')),
-            DataCell(Text('')),
-            DataCell(Text('')),
-            DataCell(Text('')),
-          ]),
+        rows: [
+          for (var medicineInfo in medicineDatabase.medicineHistory)
+            DataRow(cells: <DataCell>[
+              DataCell(Text(medicineInfo[0])),
+              DataCell(Text(medicineInfo[1])),
+              DataCell(Text(medicineInfo[2])),
+              DataCell(Text(medicineInfo[3])),
+              DataCell(Text(medicineInfo[4])),
+            ]),
         ],
       ),
     );
